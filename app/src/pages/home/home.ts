@@ -6,6 +6,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public percent = 82;
 
   constructor(public navCtrl: NavController) {
 
