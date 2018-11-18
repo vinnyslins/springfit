@@ -1,0 +1,21 @@
+@import '../../../variables';
+
+.rodape{
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+
+.copyright{
+    margin-top: 1em;
+    font-size: 0.3em;
+}
+
+.social-media-icon{
+    margin: 0.5em;
+    cursor: pointer;
+    font-size: 2em;
+}
+
+.social-media-icon:hover{
+    color: $primary-color;
+}

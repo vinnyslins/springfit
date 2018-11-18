@@ -1,0 +1,47 @@
+@import '../../../variables';
+    
+// @media screen and (min-width:480px)
+// @media screen and (min-width:768px)
+// @media screen and (min-width:960px)
+// @media screen and (min-width:1280px)
+
+.hamburg-menu{
+    .p-4{
+        background-color: black;
+    }
+
+    nav{
+        background-color: black;
+    }
+
+    @media screen and (min-width:960px){
+        display: none;
+    }
+}
+        
+.tab-menu{
+    padding-left: 3em;
+    padding-right: 3em;
+    display: none;
+    background-color: black;
+
+    @media screen and (min-width:960px){
+        display: flex;
+    }
+}
+    
+a{
+    color: $primary-color;
+}
+
+.nav-fill .nav-item .active{
+    background-color: $primary-color;
+}
+
+.brand-img{
+    height: 4em;
+}
+
+.btn-login{
+    margin-left: 1em;
+}
