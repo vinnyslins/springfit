@@ -5,18 +5,18 @@ import { HttpClient } from '@angular/common/http'
   providedIn: 'root'
 })
 
-export class PlanosService {
+export class PlansService {
 
   httpURL: string = 'http://5bd683baa6871d0013323384.mockapi.io/Plano'
 
   constructor(private http: HttpClient) { }
 
   GetPlanos(){
-    return this.http.get<Plano[]>(`${this.httpURL}`);
+    return this.http.get<Plan[]>(`${this.httpURL}`);
   }
 }
 
-export class Plano{
+export class Plan{
   
   constructor() {  }
 

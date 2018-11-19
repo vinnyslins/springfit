@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Plano, PlanosService } from '../../services/planos.service'
+import { Plan, PlansService } from '../../services/plans.service'
 
 @Component({
-  selector: 'app-planos',
+  selector: '.app-planos',
   templateUrl: './planos.component.html',
   styleUrls: ['./planos.component.scss']
 })
 
 export class PlanosComponent implements OnInit {
 
-  planos: Array<Plano>;
+  planos: Array<Plan>;
 
-  constructor(private planos_service: PlanosService) { }
+  constructor(private planos_service: PlansService) { }
 
   ngOnInit() {
     this.GetPlanos();

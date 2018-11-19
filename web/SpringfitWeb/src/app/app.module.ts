@@ -11,11 +11,13 @@ import { BannerComponent } from './header/banner/banner.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { SignInComponent } from './header/menu/sign-in/sign-in.component';
 
-import { PlanosService } from './services/planos.service'
-import { AlunosService } from './services/alunos.service';
+import { PlansService } from './services/plans.service'
+import { UsersService } from './services/users.service';
 import { CarouselComponent } from './footer/carousel/carousel.component';
 import { ContatcComponent } from './footer/contatc/contatc.component';
-import { PlanosComponent } from './content/planos/planos.component'
+import { PlanosComponent } from './content/planos/planos.component';
+import { DownloadsComponent } from './content/downloads/downloads.component';
+import { UsersComponent } from './content/users/users.component'
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { PlanosComponent } from './content/planos/planos.component'
     SignInComponent,
     CarouselComponent,
     ContatcComponent,
-    PlanosComponent
+    PlanosComponent,
+    DownloadsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +40,8 @@ import { PlanosComponent } from './content/planos/planos.component'
     HttpClientModule
   ],
   providers: [
-    PlanosService,
-    AlunosService
+    PlansService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })
