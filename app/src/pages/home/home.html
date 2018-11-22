@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="home">
   <div class="progress" padding text-center>
     <h4>Seu progresso semanal</h4>
     <circle-progress [percent]="percent" subtitle="concluído"></circle-progress>
@@ -16,8 +16,15 @@
       <ion-item-sliding *ngFor="let exercise of exercises" #slide>
         <ion-item [ngClass]="{ 'done': exercise.done }">
           <h2>
-            <ion-icon name="checkmark" *ngIf="exercise.done"></ion-icon>
-            {{ exercise.name }} | {{ exercise.repeats }} de {{ exercise.series }}
+            <ion-row>
+              <ion-col col-9>
+                <ion-icon name="checkmark" *ngIf="exercise.done"></ion-icon>
+                {{ exercise.name }}
+              </ion-col>
+              <ion-col col-3>
+                {{ exercise.repeats }} de {{ exercise.series }}
+              </ion-col>
+            </ion-row>
           </h2>
         </ion-item>
         <ion-item-options side="right" *ngIf="!exercise.done">

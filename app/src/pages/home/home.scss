@@ -1,19 +1,25 @@
 page-home {
+  .home {
+    background: linear-gradient(map-get($colors, 'primary'), map-get($colors, 'tertiary'));
+    color: map-get($colors, 'white-color');
+  }
+
   .progress {
+    background-color: map-get($colors, 'white-color');
     color: map-get($colors, 'dark');
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
   }
 
   .training {
-    background: linear-gradient(map-get($colors, 'primary'), map-get($colors, 'tertiary'));
-    color: map-get($colors, 'white-color');
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    height: 100%;
 
     ion-item-sliding {
-      background-color: map-get($colors, 'color-white');
       border-radius: 30px;
       margin-bottom: 10px;
+
+      .label-md {
+        margin: 0;
+      }
 
       .done {
         h2 {
