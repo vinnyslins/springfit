@@ -5,8 +5,28 @@
 </ion-header>
 
 <ion-content>
-  <div padding text-center>
+  <div class="progress" padding text-center>
     <h4>Seu progresso semanal</h4>
     <circle-progress [percent]="percent" subtitle="concluído"></circle-progress>
+  </div>
+
+  <div padding class="training">
+    <h4 text-center>Seu treino de hoje</h4>
+    <ion-list>
+      <ion-item-sliding *ngFor="let exercise of exercises" #slide>
+        <ion-item [ngClass]="{ 'done': exercise.done }">
+          <h2>
+            <ion-icon name="checkmark" *ngIf="exercise.done"></ion-icon>
+            {{ exercise.name }} | {{ exercise.repeats }} de {{ exercise.series }}
+          </h2>
+        </ion-item>
+        <ion-item-options side="right" *ngIf="!exercise.done">
+          <button ion-button color="light" (click)="toExercise(exercise); slide.close()">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            Feito
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
   </div>
 </ion-content>
