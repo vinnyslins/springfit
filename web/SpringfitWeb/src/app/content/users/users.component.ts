@@ -2,21 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
-  selector: '.app-users',
+  selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
 
-  users = Array<any>();
+  SelectedUser : any;
 
-  constructor(private alunos_service: UsersService) { }
+  Users : Array<any>;
+
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
     this.GetUsers();
   }
 
   GetUsers(){
-    this.alunos_service.GetUsers().subscribe(result => this.users = result);
+    this.usersService.GetUsers().subscribe(result => this.Users = result);
   }
 }

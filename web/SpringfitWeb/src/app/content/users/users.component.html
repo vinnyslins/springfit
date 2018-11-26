@@ -1,13 +1,16 @@
-<button class="btn btn-primary">Add User</button>
+<div class="jumbotron">
+  <button class="btn btn-primary">Add User</button>
 
-<ul>
-  <li *ngFor="let user of users" class="user">
-    <div>
-      <p>Name:{{user.Name}}</p>
-      <p>Address:{{user.Address}}</p>
-      <!-- <h1>Permission Level:{{user.permission}}</h1> -->
-      <i class="fas fa-edit"></i>
-      <i class="fas fa-info-circle"></i>
-    </div>
-  </li>
-</ul>
+  <ul>
+    <li *ngFor="let user of Users" class="user">
+      <div>
+        <i class="fas fa-user-astronaut"></i>
+        <p>User</p>
+        <p>Name:{{ user.name }}</p>
+        <p>Address:{{ user.address }}</p>
+      </div>
+    </li>
+  </ul>
+
+  <!-- <edit-user-app></edit-user-app> -->
+</div>

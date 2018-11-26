@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-banner',
@@ -10,7 +11,7 @@ export class BannerComponent implements OnInit {
   title : string = 'Springfit';
   slogan: string = 'Pois ser fit é um estilo de vida.';
 
-  constructor() { }
+  constructor(private userService : UsersService) { }
 
   ngOnInit() {
   }

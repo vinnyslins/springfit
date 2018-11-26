@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http'
 
+import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -13,11 +14,22 @@ import { SignInComponent } from './header/menu/sign-in/sign-in.component';
 
 import { PlansService } from './services/plans.service'
 import { UsersService } from './services/users.service';
+
 import { CarouselComponent } from './footer/carousel/carousel.component';
-import { ContatcComponent } from './footer/contatc/contatc.component';
-import { PlanosComponent } from './content/planos/planos.component';
+import { ContactComponent } from './footer/contact/contact.component';
+import { PlansComponent } from './content/plans/plans.component';
 import { DownloadsComponent } from './content/downloads/downloads.component';
-import { UsersComponent } from './content/users/users.component'
+import { UsersComponent } from './content/users/users.component';
+import { HomeComponent } from './content/home/home.component';
+import { EditUserComponent } from './content/users/edit-user/edit-user.component'
+
+const appRoutes: Routes = [
+  {path: '', redirectTo: '/home',pathMatch: 'full'},
+  
+  { path: 'users', component: UsersComponent},
+  { path: 'home', component: HomeComponent },
+  { path: 'downloads', component: DownloadsComponent}
+ ];
 
 @NgModule({
   declarations: [
@@ -29,12 +41,17 @@ import { UsersComponent } from './content/users/users.component'
     MenuComponent,
     SignInComponent,
     CarouselComponent,
-    ContatcComponent,
-    PlanosComponent,
+    ContactComponent,
+    PlansComponent,
     DownloadsComponent,
-    UsersComponent
+    UsersComponent,
+    HomeComponent,
+    EditUserComponent
   ],
   imports: [
+    RouterModule.forRoot(
+      appRoutes,
+    ),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule

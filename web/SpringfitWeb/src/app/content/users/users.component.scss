@@ -1,18 +1,24 @@
 @import '../../../_variables';
 
 i{
-    float: right;
+    float: left;
+    font-size: 3em;
 }
 
 ul{
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
+    float: left;
 }
 
 .user{
     list-style: none;
-    background-color: $primary-color;
+    // background-color: $primary-color;
     padding: 2%;
     border-radius: 5px;
     margin: 1%;
+}
+
+edit-user-app{
+    float: right;
 }

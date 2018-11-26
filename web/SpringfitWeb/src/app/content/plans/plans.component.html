@@ -1,0 +1,13 @@
+<ul class='list-plans'>
+  <li *ngFor='let plan of plans' class="plan">
+    <div class="jumbotron centralize-content">
+      <button class="btn btn-primary">{{plan.Descricao}}</button>
+      <ul>
+        <li *ngFor='let beneficio of plan.Beneficios'>
+          {{ beneficio }}
+        </li>
+      </ul>
+      <h2 class="preco">R$ {{plan.Preco}}</h2>
+    </div>
+  </li>
+</ul>

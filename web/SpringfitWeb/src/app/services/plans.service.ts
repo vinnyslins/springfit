@@ -11,7 +11,7 @@ export class PlansService {
 
   constructor(private http: HttpClient) { }
 
-  GetPlanos(){
+  GetPlans(){
     return this.http.get<Plan[]>(`${this.httpURL}`);
   }
 }
