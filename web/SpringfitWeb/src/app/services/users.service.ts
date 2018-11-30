@@ -21,7 +21,6 @@ export class UsersService {
     (this.http.get<any>(`${this.httpURL + '1'}`)).toPromise().then( 
       result => {
         this.CurrentUser = result;
-        console.log(this.CurrentUser);
     }).catch(erro => alert(erro.status));
   }
 }

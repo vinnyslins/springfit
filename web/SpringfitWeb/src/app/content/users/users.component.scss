@@ -1,24 +1,33 @@
 @import '../../../_variables';
 
-i{
-    float: left;
-    font-size: 3em;
-}
-
-ul{
-    // display: flex;
-    // flex-wrap: wrap;
-    float: left;
-}
-
-.user{
-    list-style: none;
-    // background-color: $primary-color;
-    padding: 2%;
-    border-radius: 5px;
-    margin: 1%;
-}
-
 edit-user-app{
     float: right;
+}
+
+.users{
+    display: flex;
+}
+
+.users-cards{
+    padding: 0;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    
+    li{
+        list-style: none;
+        margin: 0;
+        padding: 2%;
+    }
+}
+
+
+.edit-user{
+    width: 80%;
+}
+
+.selected{
+    a{
+        background-color: $primary-color;
+    }
 }

@@ -1,0 +1,43 @@
+@import '../../../../variables';
+
+.user{
+    height: 100%;
+    padding: 2%;
+    display: flex;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #aaaaaa;
+    
+    .user-details{
+        width: 85%;
+    }
+    
+    .user-img{
+        width: 15%;
+        margin: auto 5% auto 5%;
+    }
+}
+
+i{
+    float: left;
+    font-size: 3em;
+}
+
+.selected{
+    background-color: $primary-color;
+}
+
+.instructor{
+    // background-color: #4e91fc;
+    background-color: #aaaaaa;
+}
+
+.learner{
+    // background-color: #39f956;
+    background-color: #aaaaaa;
+}
+
+.administrator{
+    // background-color: #fc533a;
+    background-color: #aaaaaa;
+}

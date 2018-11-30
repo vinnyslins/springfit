@@ -1,16 +1,31 @@
-<div class="jumbotron">
-  <button class="btn btn-primary">Add User</button>
+<div class="users panel panel-default">
+  <div class="centralize-content panel panel-default">
+    <ul class="users-cards">
 
-  <ul>
-    <li *ngFor="let user of Users" class="user">
-      <div>
-        <i class="fas fa-user-astronaut"></i>
-        <p>User</p>
-        <p>Name:{{ user.name }}</p>
-        <p>Address:{{ user.address }}</p>
-      </div>
-    </li>
-  </ul>
+      <li *ngFor="let user of Users" class="user">
+        <app-user [ngClass]="{'selected': user == SelectedUser}" [selectedUser]="this.SelectedUser" [user]="user" (selectUser)="reciverFeedback($event)"></app-user>
+      </li>
 
-  <!-- <edit-user-app></edit-user-app> -->
+    </ul>
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active">
+          <span class="page-link">
+            2
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <app-edit-user [user]="SelectedUser" class="edit-user"></app-edit-user>
 </div>

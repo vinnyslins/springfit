@@ -1,0 +1,10 @@
+<a (click)="OnSelect()" class="user" [ngClass]="{'selected': this.selectedUser == this.user }">
+  <div class="centralize-content user-img">
+    <i class="fas fa-user-astronaut"></i>
+  </div>
+  <div class="user-details">
+    <p>Name: {{ user.Name }}</p>
+    <p>Address: {{ user.Address }}</p>
+    <p>Permission: {{user.Permission}}</p>
+  </div>
+</a>

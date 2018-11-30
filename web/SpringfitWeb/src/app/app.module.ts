@@ -21,10 +21,11 @@ import { PlansComponent } from './content/plans/plans.component';
 import { DownloadsComponent } from './content/downloads/downloads.component';
 import { UsersComponent } from './content/users/users.component';
 import { HomeComponent } from './content/home/home.component';
-import { EditUserComponent } from './content/users/edit-user/edit-user.component'
+import { EditUserComponent } from './content/users/edit-user/edit-user.component';
+import { UserComponent } from './content/users/user/user.component'
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/home',pathMatch: 'full'},
+  // {path: '', redirectTo: '/home',pathMatch: 'full'},
   
   { path: 'users', component: UsersComponent},
   { path: 'home', component: HomeComponent },
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     DownloadsComponent,
     UsersComponent,
     HomeComponent,
-    EditUserComponent
+    EditUserComponent,
+    UserComponent
   ],
   imports: [
     RouterModule.forRoot(

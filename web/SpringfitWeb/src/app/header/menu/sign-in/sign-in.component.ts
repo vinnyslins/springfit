@@ -25,6 +25,7 @@ export class SignInComponent implements OnInit {
   }
 
   Login(){
+    alert("login");
     this.userService.Login(this.email, this.password);
   }
 }

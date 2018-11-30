@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +9,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private userService : UsersService) { }
+  constructor(private userService: UsersService, private router: Router) { }
 
   ngOnInit() {
   }
