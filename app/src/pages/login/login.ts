@@ -15,6 +15,6 @@ export class LoginPage {
 
   login(): void {
     localStorage.setItem('token', 'token');
-    this.navCtrl.push(TabsPage);
+    this.navCtrl.setRoot(TabsPage);
   }
 }

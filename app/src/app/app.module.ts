@@ -13,6 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { MyDataPage } from '../pages/my-data/my-data';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    MyDataPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    MyDataPage
   ],
   providers: [
     StatusBar,
