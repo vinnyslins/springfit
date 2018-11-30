@@ -1,6 +1,6 @@
 page-home {
   .home {
-    background: linear-gradient(map-get($colors, 'primary'), map-get($colors, 'tertiary'));
+    background: linear-gradient(lighten(map-get($colors, 'primary'), 15), map-get($colors, 'tertiary'));
     color: map-get($colors, 'white-color');
   }
 
