@@ -1,0 +1,6 @@
+.swal2-shown {
+  body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
+    height: 100% !important;
+    background: transparent;
+  }
+}
