@@ -28,6 +28,11 @@ export class MyDataPage {
     });
   }
 
+  logout(): void {
+    localStorage.removeItem('token');
+    location.reload();
+  }
+
   dismiss(): void {
     this.navCtrl.parent.select(0);
   }

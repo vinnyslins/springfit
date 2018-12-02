@@ -10,6 +10,9 @@
 </ion-header>
 
 <ion-content padding>
+  <button ion-button icon-start block round outline (click)="logout()">
+    <ion-icon name="power"></ion-icon>Sair
+  </button>
   <ion-list>
     <ion-item>
       <ion-label floating>Nome</ion-label>
@@ -38,5 +41,5 @@
       </ion-select>
     </ion-item>
   </ion-list>
-  <button ion-button full round (click)="save()">Salvar dados</button>
+  <button ion-button block round (click)="save()">Salvar dados</button>
 </ion-content>
