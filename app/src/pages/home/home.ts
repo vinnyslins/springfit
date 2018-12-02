@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -15,11 +15,16 @@ export class HomePage {
     { name: 'Puxada pulley pela frente', series: 15, repeats: 2 }
   ];
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, private platform: Platform) {
   }
 
-  toExercise(exercise: any) {
+  ionViewDidEnter(): void {
+    this.platform.registerBackButtonAction(() => {
+      this.platform.exitApp();
+    });
+  }
+
+  toExercise(exercise: any): void {
     exercise.done = true;
   }
 }
