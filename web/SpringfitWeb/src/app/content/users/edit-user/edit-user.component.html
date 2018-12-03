@@ -1,35 +1,58 @@
-<form *ngIf="user">
+<div class="edit-user-container border border-secondary">
+  <div *ngIf="user">
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Nome</span>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="name-input">Nome</span>
+      </div>
+      <input (input)="this.bufferUser.name = $event.target.value" [value]="this.bufferUser.name" type="text" class="form-control" placeholder="Nome" aria-label="Nome" aria-describedby="name-input">
     </div>
-    <input (input)="this.bufferUser.Name = $event.target.value" [value]="this.bufferUser.Name"   type="text" class="form-control" placeholder="Nome" aria-label="Nome" aria-describedby="basic-addon1">
-  </div>
-  
-  <div class="input-group mb-3">
-    <input (input)="this.bufferUser.email = $event.target.value" [value]="this.bufferUser.email" type="email" class="form-control" placeholder="seuemail@exemplo.com" aria-label="Recipient's username"
-      aria-describedby="basic-addon2">
-    <div class="input-group-append">
-      <span class="input-group-text" id="basic-addon2">Email</span>
+
+    <div class="input-group mb-3">
+      <div class="input-group-append">
+        <span class="input-group-text" id="email-input">Email</span>
+      </div>
+      <input (input)="this.bufferUser.email = $event.target.value" [value]="this.bufferUser.email" type="email" class="form-control" placeholder="seuemail@exemplo.com" aria-label="Recipient's username"
+        aria-describedby="email-input">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-append">
+        <span class="input-group-text" id="birthday-input">Aniversário</span>
+      </div>
+      <input (input)="dateInput($event)" [value]="birthdayInputValue()" class="form-control" type="date" name="birthday-input" max="1979-12-31">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-append">
+        <span class="input-group-text" id="address-input">Endereço</span>
+      </div>
+      <input (input)="this.bufferUser.address = $event.target.value" [value]="this.bufferUser.address" type="text" class="form-control" placeholder="Av. exeplo, 00" aria-label="Recipient's username"
+        aria-describedby="address-input">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="permission-input">Nível de permissão</label>
+      </div>
+
+      <select class="custom-select" id="permission-input" ng-model="bufferUser.permission.idPermission" convert-to-number>
+        <option [selected]="this.bufferUser.permission.idPermission == undefined" disabled hidden value="1">Selecione um nível de permissão</option>
+
+        <option *ngFor="let permission of permissionsService.Permissions" [selected]="this.bufferUser.permission.idPermission == permission.idPermission" value="{{permission.idPermission}}">{{permission.description}}</option>
+
+      </select>
+    </div>
+
+    <div class="actions">
+      <button *ngIf="user.userId != undefined" [disabled]="userChanged()" (click)="updateUser()" class="btn btn-primary button-update">Atualizar</button>
+      <button *ngIf="user.userId == undefined" [disabled]="ableToRegister()" (click)="registerUser()" class="btn btn-primary button-register">Cadastrar</button>
+      <button (click)="teste()" class="btn btn-primary button-register">teste</button>
     </div>
   </div>
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <label class="input-group-text" for="inputGroupSelect01">Nível de permissão</label>
-    </div>
-    <select class="custom-select" id="inputGroupSelect01">
-      <option [selected]="this.user.Permission == 1" value="1">Administrador</option>
-      <option [selected]="this.user.Permission == 2" value="2">Professor</option>
-      <option [selected]="this.user.Permission == 3" value="3">Aluno</option>
-    </select>
+  <div *ngIf="user == undefined" class="centralize-content no-user-selected">
+    <h1>Nenhum usuário selecionado</h1>
+    <i class="fas fa-user-shield"></i>
   </div>
-
-  <button (click)="updateUser()" class="btn btn-primary">Atualizar</button>
-</form>
-
-<div *ngIf="user == undefined" class="centralize-content no-user-selected">
-  <h1>Nenhum usuário selecionado</h1>
-  <i class="fas fa-user-shield"></i>
 </div>

@@ -1,6 +1,6 @@
 <div class="dropdown-menu dropdown-menu-right">
 
-  <form class="px-4 py-3">
+  <div class="px-4 py-3">
     <div class="form-group">
       <label for="email-field">Email</label>
       <input type="email" class="form-control" id="email-field" placeholder="email@example.com" (input)="EmailInputChanged($event)"/>
@@ -15,8 +15,8 @@
         Mantenha-me logado
       </label>
     </div>
-    <button (click)="Login()" class="btn-sign-in btn btn-primary">Entrar</button>
-  </form>
+    <button (click)="login()" class="btn-sign-in btn btn-primary">Entrar</button>
+  </div>
 
   <div class="dropdown-divider"></div>
 

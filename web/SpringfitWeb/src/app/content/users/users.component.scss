@@ -1,29 +1,19 @@
 @import '../../../_variables';
 
-edit-user-app{
-    float: right;
-}
-
-.users{
-    display: flex;
-}
-
 .users-cards{
-    padding: 0;
-    justify-content: space-between;
-    height: 100%;
-    width: 100%;
-    
+    border-radius: 5px;
+    margin: 0;
+    padding: 0.5em;
+
     li{
         list-style: none;
-        margin: 0;
-        padding: 2%;
+        margin: 0.5em 0 0.5em 0;
     }
 }
 
-
-.edit-user{
-    width: 80%;
+.row{
+    width: 100%;
+    padding: 1em;
 }
 
 .selected{

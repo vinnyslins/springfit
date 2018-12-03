@@ -18,6 +18,6 @@ export class PlansComponent implements OnInit {
   }
 
   GetPlans() {
-    this.plansService.GetPlans().subscribe(result => this.plans = result);
+    this.plansService.getPlans().subscribe(result => this.plans = result);
   }
 }

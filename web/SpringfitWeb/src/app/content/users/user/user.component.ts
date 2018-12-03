@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { User } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-user',
@@ -7,8 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  @Input('user') user : any;
-  @Input('selectedUser') selectedUser : any;
+  @Input('user') user : User;
+  @Input('selectedUser') selectedUser: User;
 
   @Output() selectUser = new EventEmitter();
 

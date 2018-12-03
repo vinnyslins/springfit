@@ -1,31 +1,16 @@
-<div class="users panel panel-default">
-  <div class="centralize-content panel panel-default">
-    <ul class="users-cards">
-
+<div class="row">
+  <div class="col-sm-3">
+    <ul class="users-cards border border-secondary">
+      <button (click)="createNewUser()" type="button" class="btn btn-primary btn-lg btn-block button-new-user">Novo Usuário</button>
+    
       <li *ngFor="let user of Users" class="user">
-        <app-user [ngClass]="{'selected': user == SelectedUser}" [selectedUser]="this.SelectedUser" [user]="user" (selectUser)="reciverFeedback($event)"></app-user>
+        <app-user [ngClass]="{'selected': user == SelectedUser}" [selectedUser]="this.SelectedUser" [user]="user"
+          (selectUser)="reciverFeedback($event)"></app-user>
       </li>
-
+    
     </ul>
-    <nav aria-label="...">
-      <ul class="pagination">
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active">
-          <span class="page-link">
-            2
-            <span class="sr-only">(current)</span>
-          </span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
   </div>
-
-  <app-edit-user [user]="SelectedUser" class="edit-user"></app-edit-user>
+  <div class="col-sm">
+    <app-edit-user [user]="SelectedUser" class="edit-user"></app-edit-user>
+  </div>
 </div>

@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { ContentComponent } from './content/content.component';
 import { BannerComponent } from './header/banner/banner.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { SignInComponent } from './header/menu/sign-in/sign-in.component';
@@ -25,7 +24,7 @@ import { EditUserComponent } from './content/users/edit-user/edit-user.component
 import { UserComponent } from './content/users/user/user.component'
 
 const appRoutes: Routes = [
-  // {path: '', redirectTo: '/home',pathMatch: 'full'},
+   {path: '', redirectTo: '/home',pathMatch: 'full'},
   
   { path: 'users', component: UsersComponent},
   { path: 'home', component: HomeComponent },
@@ -37,7 +36,6 @@ const appRoutes: Routes = [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    ContentComponent,
     BannerComponent,
     MenuComponent,
     SignInComponent,

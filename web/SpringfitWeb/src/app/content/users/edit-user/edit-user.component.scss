@@ -5,3 +5,14 @@
 form{
     width: inherit;
 }
+
+.edit-user-container{
+    padding: 1em;
+    border-radius: 5px;
+    height: 100%;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-between;
+}

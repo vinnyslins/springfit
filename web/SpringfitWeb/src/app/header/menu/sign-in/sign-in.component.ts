@@ -24,8 +24,7 @@ export class SignInComponent implements OnInit {
     this.password = event.target.value;
   }
 
-  Login(){
-    alert("login");
-    this.userService.Login(this.email, this.password);
+  login(){
+    this.userService.login(this.email, this.password);
   }
 }
