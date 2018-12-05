@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, ModalController } from 'ionic-angular';
+import { ModalPage } from '../modal/modal';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +16,16 @@ export class HomePage {
     { name: 'Puxada pulley pela frente', series: 15, repeats: 2 }
   ];
 
-  constructor(public navCtrl: NavController, private platform: Platform) {
+  public currentLearner: any = {};
+  public learners = [
+    { name: 'Alan Vinicius' },
+    { name: 'Lucas Teixeira' },
+    { name: 'Marcos Vinicius' },
+    { name: 'Pedro Daniel' },
+    { name: 'Vinnys Lins' },
+  ];
+
+  constructor(public navCtrl: NavController, private platform: Platform, private modalCtrl: ModalController) {
   }
 
   ionViewDidEnter(): void {
@@ -26,5 +36,11 @@ export class HomePage {
 
   toExercise(exercise: any): void {
     exercise.done = true;
+  }
+
+  openModal(learner: any): void {
+    this.currentLearner = learner;
+    const modal = this.modalCtrl.create(ModalPage);
+    modal.present();
   }
 }

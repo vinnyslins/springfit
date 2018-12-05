@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="home">
+<ion-content class="learner" *ngIf="false">
   <div class="progress" padding text-center>
     <h4>Seu progresso semanal</h4>
     <circle-progress [percent]="percent" subtitle="concluído"></circle-progress>
@@ -36,4 +36,13 @@
       </ion-item-sliding>
     </ion-list>
   </div>
+</ion-content>
+
+<ion-content class="instructor">
+  <ion-list>
+    <ion-list-header>Meus alunos</ion-list-header>
+    <a ion-item *ngFor="let learner of learners" (click)="openModal(learner)">
+      {{ learner.name }}
+    </a>
+  </ion-list>
 </ion-content>

@@ -1,5 +1,5 @@
 page-home {
-  .home {
+  .learner {
     background: linear-gradient(lighten(map-get($colors, 'primary'), 15), map-get($colors, 'tertiary'));
     color: map-get($colors, 'white-color');
   }
@@ -12,7 +12,6 @@ page-home {
   }
 
   .training {
-
     ion-item-sliding {
       border-radius: 30px;
       margin-bottom: 10px;
