@@ -16,7 +16,6 @@ export class HomePage {
     { name: 'Puxada pulley pela frente', series: 15, repeats: 2 }
   ];
 
-  public currentLearner: any = {};
   public learners = [
     { name: 'Alan Vinicius' },
     { name: 'Lucas Teixeira' },
@@ -39,8 +38,7 @@ export class HomePage {
   }
 
   openModal(learner: any): void {
-    this.currentLearner = learner;
-    const modal = this.modalCtrl.create(ModalPage);
+    const modal = this.modalCtrl.create(ModalPage, { learner: learner });
     modal.present();
   }
 }
