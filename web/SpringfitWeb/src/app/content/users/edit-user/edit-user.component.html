@@ -5,7 +5,7 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="name-input">Nome</span>
       </div>
-      <input (input)="this.bufferUser.name = $event.target.value" [value]="this.bufferUser.name" type="text" class="form-control" placeholder="Nome" aria-label="Nome" aria-describedby="name-input">
+      <input name="name-input" [(ngModel)]="bufferUser.name" type="text" class="form-control" placeholder="Nome" aria-label="Nome" aria-describedby="name-input">
     </div>
 
     <div class="input-group mb-3">
@@ -20,14 +20,14 @@
       <div class="input-group-append">
         <span class="input-group-text" id="birthday-input">Aniversário</span>
       </div>
-      <input (input)="dateInput($event)" [value]="birthdayInputValue()" class="form-control" type="date" name="birthday-input" max="1979-12-31">
+      <input [value]="bufferUser.birthday.slice(0,10)" class="form-control" type="date" name="birthday-input" max="9999-12-31">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-append">
         <span class="input-group-text" id="address-input">Endereço</span>
       </div>
-      <input (input)="this.bufferUser.address = $event.target.value" [value]="this.bufferUser.address" type="text" class="form-control" placeholder="Av. exeplo, 00" aria-label="Recipient's username"
+      <input name="address-input" [(ngModel)]="this.bufferUser.address" type="text" class="form-control" placeholder="Av. exeplo, 00" aria-label="Recipient's username"
         aria-describedby="address-input">
     </div>
 
@@ -36,18 +36,23 @@
         <label class="input-group-text" for="permission-input">Nível de permissão</label>
       </div>
 
-      <select class="custom-select" id="permission-input" ng-model="bufferUser.permission.idPermission" convert-to-number>
-        <option [selected]="this.bufferUser.permission.idPermission == undefined" disabled hidden value="1">Selecione um nível de permissão</option>
+      <select class="custom-select" name="permission-input" id="permission-input" [(ngModel)]="bufferUser.permission.idPermission">
+        
+        <option hidden [value]="undefined">Selecione um nível de permissão</option>
 
-        <option *ngFor="let permission of permissionsService.Permissions" [selected]="this.bufferUser.permission.idPermission == permission.idPermission" value="{{permission.idPermission}}">{{permission.description}}</option>
+        <option *ngFor="let permission of permissionsService.Permissions" [value]="permission.idPermission">{{permission.description}}</option>
 
       </select>
+
     </div>
 
     <div class="actions">
       <button *ngIf="user.userId != undefined" [disabled]="userChanged()" (click)="updateUser()" class="btn btn-primary button-update">Atualizar</button>
+
       <button *ngIf="user.userId == undefined" [disabled]="ableToRegister()" (click)="registerUser()" class="btn btn-primary button-register">Cadastrar</button>
+
       <button (click)="teste()" class="btn btn-primary button-register">teste</button>
+
     </div>
   </div>
 

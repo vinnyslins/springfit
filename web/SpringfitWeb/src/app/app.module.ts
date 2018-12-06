@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http'
 
 import { RouterModule, Routes } from '@angular/router';
@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { BannerComponent } from './header/banner/banner.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { SignInComponent } from './header/menu/sign-in/sign-in.component';
+import { FormsModule } from '@angular/forms';
 
 import { PlansService } from './services/plans.service'
 import { UsersService } from './services/users.service';
@@ -23,8 +24,13 @@ import { HomeComponent } from './content/home/home.component';
 import { EditUserComponent } from './content/users/edit-user/edit-user.component';
 import { UserComponent } from './content/users/user/user.component'
 
+import { registerLocaleData } from '@angular/common';
+import localeBr from '@angular/common/locales/pt';
+
+registerLocaleData(localeBr, 'pt');
+
 const appRoutes: Routes = [
-   {path: '', redirectTo: '/home',pathMatch: 'full'},
+  {path: '', redirectTo: '/home',pathMatch: 'full'},
   
   { path: 'users', component: UsersComponent},
   { path: 'home', component: HomeComponent },
@@ -54,12 +60,18 @@ const appRoutes: Routes = [
     ),
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt'
+    },
     PlansService,
     UsersService
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

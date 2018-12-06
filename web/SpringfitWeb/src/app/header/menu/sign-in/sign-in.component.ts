@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/services/users.service';
+import { UsersService, User } from 'src/app/services/users.service';
 
 @Component({
   selector: '.app-sign-in',
@@ -8,23 +8,26 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class SignInComponent implements OnInit {
 
+  rememberme: boolean;
+
+  userLogin: {
+    "email": string,
+    "password": string
+  } = {
+    "email": "",
+    "password": ""
+  }
+
   constructor(private userService: UsersService) { }
 
-  email : string;
-  password : string;
-
-  ngOnInit() {
+  ngOnInit(): void {
+    this.rememberme = false;
+    
+    this.userLogin.email = "teste";
+    this.userLogin.password = "";
   }
 
-  PasswordInputChanged(event : any){
-    this.password = event.target.value;
-  }
-
-  EmailInputChanged(event : any){
-    this.password = event.target.value;
-  }
-
-  login(){
-    this.userService.login(this.email, this.password);
+  login(): void{
+    this.userService.login(this.userLogin, this.rememberme);
   }
 }

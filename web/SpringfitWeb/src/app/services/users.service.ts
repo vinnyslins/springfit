@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Permission } from './permissions.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,36 +9,48 @@ import { Permission } from './permissions.service';
 
 export class UsersService {
 
-  usersHttpURL: string = 'https://springfit.herokuapp.com/api/users/'
+  usersHttpURL: string = 'https://springfit.herokuapp.com/api/users/';
 
-  UsersHttpURL: string = 'https://springfit.herokuapp.com/api/user/'
+  userHttpURL: string = 'https://springfit.herokuapp.com/api/user/';
+
+  loginHttpURL: string = 'https://springfit.herokuapp.com/api/login/';
 
   CurrentUser : User;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    // TODO
+    var token = sessionStorage.getItem('SpringFitToken');
+    
+    if(token != undefined){
+      console.log(token);
+      alert(token.toString());
+      this.CurrentUser = this.getUser(parseInt(token));
+    }
+  }
 
-  getUsers() {
+  getUser(id : number): User {
+    return this.http.get<User[]>(`${this.userHttpURL}` + id).subscribe()[0];
+  }
+
+  getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.usersHttpURL}`);
   }
 
-
-  login(email : string, password : string){
-    // TODO
-    // (this.http.get<User>(`${this.UsersHttpURL + '1'}`)).toPromise().then( 
-    //   result => {
-    //     this.CurrentUser = result;
-    // }).catch(erro => alert(erro.status));
-
-    this.CurrentUser = new User();
-    this.CurrentUser.name = "Marcos";
-    this.CurrentUser.userId = 1;
-    this.CurrentUser.permission.idPermission = 5;
-    this.CurrentUser.permission.description = "admin";
-
-    this.CurrentUser.name = "Marcos";
-    this.CurrentUser.name = "Marcos";
+  addUser(new_user : User): Observable<any> {
+    return this.http.post(`${this.userHttpURL}`, new_user);
   }
 
+  login(userlogin: { "email", "password"}, remember: boolean): void{
+    console.log(userlogin);
+
+    (this.http.post(`${this.loginHttpURL}`, userlogin)).subscribe(
+      result => {
+        console.log(result);
+        this.CurrentUser = result as User;
+        if(remember)
+          sessionStorage.setItem('SpringFitToken', this.CurrentUser.userId.toString());
+    });
+  }
 }
 
 export class User{
@@ -62,7 +75,7 @@ export class User{
   permission: Permission;
   birthday: Date;
 
-  CopyUser(toCopy : User){
+  CopyUser(toCopy : User): void{
     this.name = toCopy.name;
     this.email = toCopy.email;
     this.address = toCopy.address;
@@ -70,7 +83,8 @@ export class User{
     this.password = toCopy.password;
     this.userId = toCopy.userId;
     this.Status = toCopy.Status;
-    this.permission = toCopy.permission;
+    this.permission.idPermission = toCopy.permission.idPermission;
+    this.permission.description = toCopy.permission.description;
     this.birthday = toCopy.birthday;
   }
 }

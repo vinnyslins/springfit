@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, SimpleChange } from '@angular/core';
-import { User } from 'src/app/services/users.service';
+import { User, UsersService } from 'src/app/services/users.service';
 import { PermissionsService } from 'src/app/services/permissions.service';
 
 @Component({
@@ -13,13 +13,11 @@ export class EditUserComponent implements OnInit {
 
   bufferUser: User;
 
-  constructor(private permissionsService : PermissionsService) { }
+  constructor(private permissionsService : PermissionsService, private usersService : UsersService) { }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     const user: SimpleChange = changes.user;
     
     this.bufferUser = new User();
@@ -32,7 +30,7 @@ export class EditUserComponent implements OnInit {
     // TODO
   }
 
-  userChanged(){
+  userChanged() : boolean{
     if(this.user == undefined || this.bufferUser == undefined)
       return false;
 
@@ -46,21 +44,19 @@ export class EditUserComponent implements OnInit {
     return true;
   }
 
-  registerUser(){
-    // TODO
+  registerUser(): void{
+    var response : any;
+    this.usersService.addUser(this.bufferUser).subscribe(result => response = result);
+    console.log(response);
   }
 
-  ableToRegister(){
+  ableToRegister(): boolean{
     if(this.bufferUser.name != "" && 
     this.bufferUser.permission.idPermission != undefined && 
     this.bufferUser.email != "")
       return false;
     else
       return true;
-  }
-
-  birthdayInputValue(){
-    
   }
 
   dateInput(event){
