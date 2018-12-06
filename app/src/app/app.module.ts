@@ -18,6 +18,9 @@ import { ModalPage } from '../pages/modal/modal';
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
+import { UserProvider } from '../providers/user';
+import { TrainProvider } from '../providers/train';
+import { HttpClientModule } from '@angular/common/http';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -37,7 +40,8 @@ registerLocaleData(ptBr)
     NgCircleProgressModule.forRoot({
       radius: 80,
       outerStrokeColor: "#58AF26"
-    })
+    }),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,7 +58,9 @@ registerLocaleData(ptBr)
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    UserProvider,
+    TrainProvider
   ]
 })
 export class AppModule {}
