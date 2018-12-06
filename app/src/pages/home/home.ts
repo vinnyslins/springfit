@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, Platform, ModalController } from 'ionic-angular';
 import { ModalPage } from '../modal/modal';
+import { UserProvider } from '../../providers/user';
 
 @Component({
   selector: 'page-home',
@@ -24,7 +25,12 @@ export class HomePage {
     { name: 'Vinnys Lins' },
   ];
 
-  constructor(public navCtrl: NavController, private platform: Platform, private modalCtrl: ModalController) {
+  constructor(
+    public navCtrl: NavController,
+    private platform: Platform,
+    private modalCtrl: ModalController,
+    public userProvider: UserProvider
+  ) {
   }
 
   ionViewDidEnter(): void {

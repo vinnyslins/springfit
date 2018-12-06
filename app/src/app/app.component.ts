@@ -10,7 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = localStorage.getItem('token') ? TabsPage : LoginPage;
+  rootPage: any = localStorage.getItem('id') ? TabsPage : LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 export class TrainProvider {
   private apiUrl = 'http://springfit.herokuapp.com/api';
 
-  constructor() {
+  constructor(public http: HttpClient) {
   }
 }

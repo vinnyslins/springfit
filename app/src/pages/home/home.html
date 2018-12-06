@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="learner" *ngIf="false">
+<ion-content class="learner" *ngIf="userProvider.user?.permission.idPermission == 3">
   <div class="progress" padding text-center>
     <h4>Seu progresso semanal</h4>
     <circle-progress [percent]="percent" subtitle="concluído"></circle-progress>
@@ -38,7 +38,7 @@
   </div>
 </ion-content>
 
-<ion-content class="instructor">
+<ion-content class="instructor" *ngIf="userProvider.user?.permission.idPermission == 4">
   <ion-list>
     <ion-list-header>Alunos</ion-list-header>
     <a ion-item *ngFor="let learner of learners" (click)="openModal(learner)">

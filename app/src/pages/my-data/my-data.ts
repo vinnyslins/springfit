@@ -29,7 +29,7 @@ export class MyDataPage {
   }
 
   logout(): void {
-    localStorage.removeItem('token');
+    localStorage.removeItem('id');
     location.reload();
   }
 

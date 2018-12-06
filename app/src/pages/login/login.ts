@@ -16,9 +16,26 @@ export class LoginPage {
   }
 
   login(): void {
-    this.userProvider.login().then(() => {
-      localStorage.setItem('token', 'token');
-      this.navCtrl.setRoot(TabsPage);
+    const payload = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.userProvider.login(payload).then(response => {
+      if (response) {
+        delete response.password;
+        this.userProvider.user = response;
+        localStorage.setItem('id', response.userId);
+        this.navCtrl.setRoot(TabsPage);
+      } else {
+        swal({
+          title: 'Erro',
+          text: 'E-mail ou senha incorretos.',
+          type: 'error',
+          showCloseButton: true,
+          showConfirmButton: false
+        });
+      }
     }).catch(() => {
       swal({
         title: 'Erro',
