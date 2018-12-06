@@ -7,4 +7,8 @@ export class TrainProvider {
 
   constructor(public http: HttpClient) {
   }
+
+  createTrain(payload: any): Promise<any> {
+    return this.http.post(`${this.apiUrl}/train`, payload).toPromise();
+  }
 }
