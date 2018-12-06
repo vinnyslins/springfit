@@ -24,7 +24,6 @@ export class LoginPage {
     this.userProvider.login(payload).then(response => {
       if (response) {
         if (response.permission.idPermission === 3 || response.permission.idPermission === 4) {
-          delete response.password;
           this.userProvider.user = response;
           localStorage.setItem('id', response.userId);
           this.navCtrl.setRoot(TabsPage);

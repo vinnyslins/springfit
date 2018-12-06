@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-import Swal from 'sweetalert2';
+import swal from 'sweetalert2';
 import { UserProvider } from '../../providers/user';
 
 @Component({
@@ -25,12 +25,22 @@ export class MyDataPage {
   }
 
   save(): void {
-    Swal({
-      title: 'Sucesso',
-      text: 'Dados salvos com sucesso!',
-      type: 'success',
-      showCloseButton: true,
-      showConfirmButton: false
+    this.userProvider.saveUser().then((response) => {
+      swal({
+        title: 'Sucesso',
+        text: 'Dados salvos com sucesso.',
+        type: 'success',
+        showCloseButton: true,
+        showConfirmButton: false
+      });
+    }).catch(() => {
+      swal({
+        title: 'Erro',
+        text: 'Ocorreu um erro ao salvar os dados.',
+        type: 'error',
+        showCloseButton: true,
+        showConfirmButton: false
+      });
     });
   }
 
