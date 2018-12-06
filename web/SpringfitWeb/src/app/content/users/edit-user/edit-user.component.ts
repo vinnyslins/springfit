@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, SimpleChange, Output, EventEmitter } from '@angular/core';
 import { User, UsersService } from 'src/app/services/users.service';
 import { PermissionsService } from 'src/app/services/permissions.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class EditUserComponent implements OnInit {
 
   @Input('user') user : User;
+  @Output() usersChanged = new EventEmitter();
 
   bufferUser: User;
 
@@ -28,9 +29,22 @@ export class EditUserComponent implements OnInit {
   }
 
   updateUser(){
-    // TODO
+    this.usersService.updateUser(this.bufferUser);
 
-    this.router.navigate(['/users']);
+    this.feedback();
+  }
+
+  deletUser(){
+    this.usersService.deletUser(this.bufferUser);
+
+    this.bufferUser = undefined;
+    this.feedback();
+  }
+  
+  registerUser(): void{
+    this.usersService.addUser(this.bufferUser).subscribe();
+    
+    this.feedback();
   }
 
   userChanged() : boolean{
@@ -52,14 +66,7 @@ export class EditUserComponent implements OnInit {
     
     return true;
   }
-
-  registerUser(): void{
-    var response : any;
-
-    this.usersService.addUser(this.bufferUser).subscribe(result => response = result);
-    this.router.navigate(['/users']);
-  }
-
+  
   ableToRegister(): boolean{
     if(this.bufferUser.name != "" && 
     this.bufferUser.permission.idPermission != undefined && 
@@ -67,6 +74,10 @@ export class EditUserComponent implements OnInit {
       return false;
     else
       return true;
+  }
+
+  feedback() {
+    this.usersChanged.emit(this.bufferUser);
   }
 
 }

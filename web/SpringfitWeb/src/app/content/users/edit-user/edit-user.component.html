@@ -5,14 +5,14 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="name-input">Nome</span>
       </div>
-      <input name="name-input" [(ngModel)]="bufferUser.name" type="text" class="form-control" placeholder="Nome">
+      <input name="name-input" [(ngModel)]="bufferUser.name" type="text" class="form-control" placeholder="Nome" required>
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-append">
         <span class="input-group-text" id="email-input">Email</span>
       </div>
-      <input [(ngModel)]="bufferUser.email" type="email" class="form-control" placeholder="seuemail@exemplo.com">
+      <input [(ngModel)]="bufferUser.email" type="email" class="form-control" placeholder="seuemail@exemplo.com" required>
     </div>
 
     <div class="input-group mb-3">
@@ -20,7 +20,7 @@
         <span class="input-group-text" id="document-input">CPF</span>
       </div>
       <input [(ngModel)]="bufferUser.document" type="text" class="form-control" name="document-input"
-        placeholder="000.000.000-00">
+        placeholder="000.000.000-00" required>
     </div>
 
     <div class="input-group mb-3">
@@ -34,7 +34,7 @@
       <div class="input-group-append">
         <span class="input-group-text" id="address-input">Endereço</span>
       </div>
-      <input name="address-input" [(ngModel)]="this.bufferUser.address" type="text" class="form-control" placeholder="Av. exeplo, 00">
+      <input name="address-input" [(ngModel)]="this.bufferUser.address" type="text" class="form-control" placeholder="Av. exeplo, 00" required>
     </div>
 
     <div class="input-group mb-3">
@@ -42,7 +42,7 @@
         <label class="input-group-text" for="permission-input">Nível de permissão</label>
       </div>
 
-      <select class="custom-select" name="permission-input" id="permission-input" [(ngModel)]="bufferUser.permission.idPermission">
+      <select class="custom-select" name="permission-input" id="permission-input" [(ngModel)]="bufferUser.permission.idPermission" required>
         
         <option hidden [value]="undefined">Selecione um nível de permissão</option>
 
@@ -53,11 +53,15 @@
     </div>
 
     <div class="actions">
+      
       <button *ngIf="user.userId != undefined" [swal]="['Sucesso!', 'Usuário atualizados!', 'success']" [disabled]="userChanged()" (click)="updateUser()" class="btn btn-primary button-update">Atualizar</button>
 
-      <button *ngIf="user.userId != undefined" (click)="updateUser()" class="btn btn-primary button-update">Deletar</button>
-
       <button *ngIf="user.userId == undefined" [swal]="['Sucesso!', 'Usuário registrado!', 'success']" [disabled]="ableToRegister()" (click)="registerUser()" class="btn btn-primary button-register">Cadastrar</button>
+      
+      <button *ngIf="user.userId != undefined" 
+      [swal]="deleteSwal" (confirm)="deletUser()" class="btn btn-primary button-update">Deletar</button>
+
+      <swal #deleteSwal title="Delete {{ user.name }}?" text="Deseja mesmo deletar esse usuário?" type="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="deletUser()"></swal>
 
     </div>
   </div>

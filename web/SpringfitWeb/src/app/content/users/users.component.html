@@ -11,6 +11,6 @@
     </ul>
   </div>
   <div class="col-sm">
-    <app-edit-user [user]="SelectedUser" class="edit-user"></app-edit-user>
+    <app-edit-user [user]="SelectedUser" class="edit-user" (usersChanged)="listUsersChanged($user)"></app-edit-user>
   </div>
 </div>

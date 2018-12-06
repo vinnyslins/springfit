@@ -14,5 +14,9 @@ form{
 
 .actions{
     display: flex;
-    justify-content: space-between;
+    
+    button{
+        margin: 1em;
+    }
+    // justify-content: space-around;
 }

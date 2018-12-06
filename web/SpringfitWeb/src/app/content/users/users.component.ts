@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService, User } from 'src/app/services/users.service';
 import { UserComponent } from './user/user.component';
 import { Router } from "@angular/router"
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @Component({
   selector: 'app-users',
@@ -10,31 +11,39 @@ import { Router } from "@angular/router"
 })
 
 export class UsersComponent implements OnInit {
+
   @ViewChild(UserComponent) userComponent: UserComponent;
+  @ViewChild(EditUserComponent) editUserComponent: EditUserComponent;
 
   SelectedUser: User;
-
   Users: Array<User>;
 
   constructor(private userService : UsersService, private router: Router) { }
 
   ngOnInit() {
-    this.GetUsers();
+    this.getUsers();
     if (this.userService.CurrentUser == undefined) {
-      // TODO
-      // this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
     }
   }
 
-  GetUsers(){
+  getUsers(): void{
     this.userService.getUsers().subscribe(result => this.Users = result);
   }
   
-  reciverFeedback(userSelected) {
+  listUsersChanged(user : User): void{
+    if(user == undefined)
+    this.SelectedUser = undefined;
+    
+    this.getUsers();
+  }
+  
+  reciverFeedback(userSelected : User): void {
     this.SelectedUser = userSelected;
   }
 
-  createNewUser(){
+  createNewUser(): void{
     this.SelectedUser = new User();
   }
+
 }
