@@ -1,3 +1,11 @@
 page-modal {
+  ion-slide {
+    background: linear-gradient(map-get($colors, 'primary'), darken(map-get($colors, 'tertiary'), 3));
+    color: map-get($colors, 'white-color');
 
+    button.button {
+      color: map-get($colors, 'white-color');
+      border-color: map-get($colors, 'white-color');
+    }
+  }
 }

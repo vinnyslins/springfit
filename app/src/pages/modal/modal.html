@@ -11,6 +11,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <ion-slides pager>
+    <ion-slide *ngFor="let train of trains">
+      <h2>{{ train.date | date: 'EEEE' | uppercase }}</h2>
+      <div *ngIf="!train.idTrain">
+        <p>Nenhum treino criado para esse dia.</p>
+        <button ion-button outline round>Criar agora</button>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

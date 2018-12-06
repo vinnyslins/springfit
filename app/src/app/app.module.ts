@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -15,6 +15,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MyDataPage } from '../pages/my-data/my-data';
 import { ModalPage } from '../pages/modal/modal';
+
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
 
 @NgModule({
   declarations: [
@@ -49,7 +53,8 @@ import { ModalPage } from '../pages/modal/modal';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
 export class AppModule {}
