@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges, SimpleChange } from '@angular/core';
 import { User, UsersService } from 'src/app/services/users.service';
 import { PermissionsService } from 'src/app/services/permissions.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
@@ -13,7 +14,7 @@ export class EditUserComponent implements OnInit {
 
   bufferUser: User;
 
-  constructor(private permissionsService : PermissionsService, private usersService : UsersService) { }
+  constructor(private permissionsService: PermissionsService, private usersService: UsersService, private router: Router) { }
 
   ngOnInit() {}
 
@@ -28,6 +29,8 @@ export class EditUserComponent implements OnInit {
 
   updateUser(){
     // TODO
+
+    this.router.navigate(['/users']);
   }
 
   userChanged() : boolean{
@@ -38,6 +41,12 @@ export class EditUserComponent implements OnInit {
       return false;
     if(this.bufferUser.email != this.user.email)
       return false;
+    if (this.bufferUser.address != this.user.address)
+      return false;
+    if (this.bufferUser.document != this.user.document)
+      return false;
+    if (this.bufferUser.birthday != this.user.birthday)
+      return false;
     if (this.bufferUser.permission.idPermission != this.user.permission.idPermission)
       return false;
     
@@ -46,8 +55,9 @@ export class EditUserComponent implements OnInit {
 
   registerUser(): void{
     var response : any;
+
     this.usersService.addUser(this.bufferUser).subscribe(result => response = result);
-    console.log(response);
+    this.router.navigate(['/users']);
   }
 
   ableToRegister(): boolean{
@@ -59,11 +69,4 @@ export class EditUserComponent implements OnInit {
       return true;
   }
 
-  dateInput(event){
-    this.bufferUser.birthday = new Date(event.target.value);
-  }
-
-  teste(){
-    console.log(this.bufferUser);
-  }
 }

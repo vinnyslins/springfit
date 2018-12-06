@@ -1,6 +1,7 @@
 <div class="dropdown-menu dropdown-menu-right">
 
   <div class="px-4 py-3">
+    <p *ngIf="loginFaild" class="error-login">Usuário ou senha incorretos.</p>
     <div class="form-group">
       <label for="email-field">Email</label>
       <input type="email" class="form-control" [(ngModel)]="userLogin.email" name="email-input" id="email-input" placeholder="email@example.com"/>

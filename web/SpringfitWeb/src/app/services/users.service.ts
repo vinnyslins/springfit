@@ -17,19 +17,23 @@ export class UsersService {
 
   CurrentUser : User;
 
-  constructor(private http: HttpClient) { 
-    // TODO
+  constructor(private http: HttpClient) {
     var token = sessionStorage.getItem('SpringFitToken');
-    
+
     if(token != undefined){
-      console.log(token);
-      alert(token.toString());
-      this.CurrentUser = this.getUser(parseInt(token));
+      this.getUser(parseInt(token)).toPromise().then(
+        result => {
+          if(result == null)
+            sessionStorage.removeItem('SpringFitToken');
+          else
+            this.CurrentUser = result;
+        }
+      );
     }
   }
 
-  getUser(id : number): User {
-    return this.http.get<User[]>(`${this.userHttpURL}` + id).subscribe()[0];
+  getUser(user_id : number): Observable<User> {
+    return this.http.get<User>(`${this.userHttpURL}` + user_id);
   }
 
   getUsers(): Observable<User[]> {
@@ -40,17 +44,59 @@ export class UsersService {
     return this.http.post(`${this.userHttpURL}`, new_user);
   }
 
-  login(userlogin: { "email", "password"}, remember: boolean): void{
-    console.log(userlogin);
+  deletUser(deleted_user: User): boolean{
+    deleted_user.Delet();
 
-    (this.http.post(`${this.loginHttpURL}`, userlogin)).subscribe(
-      result => {
-        console.log(result);
-        this.CurrentUser = result as User;
-        if(remember)
-          sessionStorage.setItem('SpringFitToken', this.CurrentUser.userId.toString());
-    });
+    return this.updateUser(deleted_user);
   }
+  
+  updateUser(updated_user: User): boolean{
+    var valid: boolean = false;
+    
+    if(updated_user.userId == undefined)
+      return valid;
+
+    this.http.put(`${this.userHttpURL}`, updated_user).toPromise().then(
+      result => {
+        valid = (result != null);
+      }
+    );
+
+    return valid;
+  }
+
+  login(userlogin: { "email", "password"}, remember: boolean): boolean{
+    var valid: boolean;
+
+    (this.http.post(`${this.loginHttpURL}`, userlogin)).toPromise().then(
+      result => {
+        if(result === null)
+          return valid = false;
+        else{
+          this.CurrentUser = result as User;
+          if(remember)
+            sessionStorage.setItem('SpringFitToken', this.CurrentUser.userId.toString());
+          return  valid =true;
+        }
+    }).catch(function(error){
+      alert(error);
+    });
+
+    return valid;
+  }
+
+  logout(): void{
+    this.CurrentUser = undefined;
+    sessionStorage.removeItem('SpringFitToken');
+  }
+
+  currentUserAdmin(): boolean {
+    if (this.CurrentUser != undefined)
+      return this.CurrentUser.permission.idPermission == 5;
+    else
+      return false;
+  }
+
 }
 
 export class User{
@@ -71,9 +117,9 @@ export class User{
   document: string;
   password: string;
   userId: number;
-  Status: number;
+  status: string;
   permission: Permission;
-  birthday: Date;
+  birthday: string;
 
   CopyUser(toCopy : User): void{
     this.name = toCopy.name;
@@ -82,9 +128,13 @@ export class User{
     this.document = toCopy.document;
     this.password = toCopy.password;
     this.userId = toCopy.userId;
-    this.Status = toCopy.Status;
+    this.status = toCopy.status;
     this.permission.idPermission = toCopy.permission.idPermission;
     this.permission.description = toCopy.permission.description;
     this.birthday = toCopy.birthday;
+  }
+
+  Delet(): void{
+    this.status = "off";
   }
 }

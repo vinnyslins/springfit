@@ -16,14 +16,14 @@ export class UsersComponent implements OnInit {
 
   Users: Array<User>;
 
-  constructor(private userService : UsersService, private router: Router) { 
-    if (this.userService.CurrentUser == undefined) {
-      this.router.navigate(['/home']);
-    }
-  }
+  constructor(private userService : UsersService, private router: Router) { }
 
   ngOnInit() {
     this.GetUsers();
+    if (this.userService.CurrentUser == undefined) {
+      // TODO
+      // this.router.navigate(['/home']);
+    }
   }
 
   GetUsers(){

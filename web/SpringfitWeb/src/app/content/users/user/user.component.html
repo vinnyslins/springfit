@@ -1,10 +1,18 @@
-<a (click)="OnSelect()" class="user" [ngClass]="{'selected': this.selectedUser == this.user }">
+<a (click)="OnSelect()" [ngClass]="{ 'selected': this.selectedUser == this.user, 'off': this.user.status == 'off' }" class="user">
   <div class="centralize-content user-img">
     <i class="fas fa-user-astronaut"></i>
   </div>
-  <div class="user-details">
-    <p>Nome: {{ user.name }}</p>
-    <p>Endereço: {{ user.address }}</p>
-    <p>Tipo de usuário: {{user.permission.description}}</p>
+  <div class="user-details centralize-content">
+    <h1 class="user-name">{{ user.name }}</h1>
+    <div>
+      <div class="detail">
+        <i class="fas fa-home" data-toggle="tooltip" data-placement="bottom" title="Endereço"></i>
+        <p>{{ user.address }}</p>
+      </div>
+      <div class="detail">
+        <i class="fas fa-lock" data-toggle="tooltip" data-placement="bottom" title="Permissões"></i>
+        <p>{{user.permission.description}}</p>
+      </div>
+    </div>
   </div>
 </a>

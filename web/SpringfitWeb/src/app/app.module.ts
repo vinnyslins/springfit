@@ -26,6 +26,7 @@ import { UserComponent } from './content/users/user/user.component'
 
 import { registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 registerLocaleData(localeBr, 'pt');
 
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     UserComponent
   ],
   imports: [
+    SweetAlert2Module.forRoot(),
     RouterModule.forRoot(
       appRoutes,
     ),

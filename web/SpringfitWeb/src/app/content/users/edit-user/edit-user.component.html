@@ -5,30 +5,36 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="name-input">Nome</span>
       </div>
-      <input name="name-input" [(ngModel)]="bufferUser.name" type="text" class="form-control" placeholder="Nome" aria-label="Nome" aria-describedby="name-input">
+      <input name="name-input" [(ngModel)]="bufferUser.name" type="text" class="form-control" placeholder="Nome">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-append">
         <span class="input-group-text" id="email-input">Email</span>
       </div>
-      <input (input)="this.bufferUser.email = $event.target.value" [value]="this.bufferUser.email" type="email" class="form-control" placeholder="seuemail@exemplo.com" aria-label="Recipient's username"
-        aria-describedby="email-input">
+      <input [(ngModel)]="bufferUser.email" type="email" class="form-control" placeholder="seuemail@exemplo.com">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-append">
+        <span class="input-group-text" id="document-input">CPF</span>
+      </div>
+      <input [(ngModel)]="bufferUser.document" type="text" class="form-control" name="document-input"
+        placeholder="000.000.000-00">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-append">
         <span class="input-group-text" id="birthday-input">Aniversário</span>
       </div>
-      <input [value]="bufferUser.birthday.slice(0,10)" class="form-control" type="date" name="birthday-input" max="9999-12-31">
+      <input [(ngModel)]="this.bufferUser.birthday" class="form-control" type="date" name="birthday-input" max="9999-12-31">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-append">
         <span class="input-group-text" id="address-input">Endereço</span>
       </div>
-      <input name="address-input" [(ngModel)]="this.bufferUser.address" type="text" class="form-control" placeholder="Av. exeplo, 00" aria-label="Recipient's username"
-        aria-describedby="address-input">
+      <input name="address-input" [(ngModel)]="this.bufferUser.address" type="text" class="form-control" placeholder="Av. exeplo, 00">
     </div>
 
     <div class="input-group mb-3">
@@ -47,11 +53,11 @@
     </div>
 
     <div class="actions">
-      <button *ngIf="user.userId != undefined" [disabled]="userChanged()" (click)="updateUser()" class="btn btn-primary button-update">Atualizar</button>
+      <button *ngIf="user.userId != undefined" [swal]="['Sucesso!', 'Usuário atualizados!', 'success']" [disabled]="userChanged()" (click)="updateUser()" class="btn btn-primary button-update">Atualizar</button>
 
-      <button *ngIf="user.userId == undefined" [disabled]="ableToRegister()" (click)="registerUser()" class="btn btn-primary button-register">Cadastrar</button>
+      <button *ngIf="user.userId != undefined" (click)="updateUser()" class="btn btn-primary button-update">Deletar</button>
 
-      <button (click)="teste()" class="btn btn-primary button-register">teste</button>
+      <button *ngIf="user.userId == undefined" [swal]="['Sucesso!', 'Usuário registrado!', 'success']" [disabled]="ableToRegister()" (click)="registerUser()" class="btn btn-primary button-register">Cadastrar</button>
 
     </div>
   </div>

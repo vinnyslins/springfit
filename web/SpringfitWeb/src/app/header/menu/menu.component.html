@@ -4,7 +4,7 @@
     <li class="nav-item">
       <a [ngClass]="{'active' : router.url == '/home'}"  class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" routerLink="/home" aria-selected="true">Home</a>
     </li>
-    <li *ngIf="userService.CurrentUser != null" class="nav-item">
+    <li *ngIf="userService.currentUserAdmin()" class="nav-item">
       <a [ngClass]="{'active' : router.url == '/users'}" class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" routerLink="/users"
         aria-selected="false">Usuários</a>
     </li>
@@ -19,6 +19,11 @@
       </a>
       <div class="app-sign-in"></div>
     </div>
+    <li *ngIf="userService.CurrentUser != null" class="nav-item">
+      <a (click)="logout()" class="nav-link" id="pills-contact-tab" data-toggle="pill"
+        href="#pills-contact" role="tab" aria-controls="pills-contact" routerLink="/home" aria-selected="false"><i class="fas fa-sign-out-alt" data-toggle="tooltip" title="Logout"></i></a>
+    </li>
+    <!-- <button (click)="teste()" class="btn-sign-in btn btn-primary">Teste</button> -->
   </ul>
 </nav>
 

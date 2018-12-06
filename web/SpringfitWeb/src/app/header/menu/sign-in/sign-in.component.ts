@@ -9,25 +9,19 @@ import { UsersService, User } from 'src/app/services/users.service';
 export class SignInComponent implements OnInit {
 
   rememberme: boolean;
+  loginFaild : boolean;
 
-  userLogin: {
-    "email": string,
-    "password": string
-  } = {
-    "email": "",
-    "password": ""
-  }
+  userLogin: {"email": string, "password": string} 
+  = {"email": "", "password": ""}
 
   constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
     this.rememberme = false;
-    
-    this.userLogin.email = "teste";
-    this.userLogin.password = "";
+    this.loginFaild = false;
   }
 
   login(): void{
-    this.userService.login(this.userLogin, this.rememberme);
+    this.loginFaild = !this.userService.login(this.userLogin, this.rememberme);
   }
 }
