@@ -17,13 +17,7 @@ export class HomePage {
     { name: 'Puxada pulley pela frente', series: 15, repeats: 2 }
   ];
 
-  public learners = [
-    { name: 'Alan Vinicius' },
-    { name: 'Lucas Teixeira' },
-    { name: 'Marcos Vinicius' },
-    { name: 'Pedro Daniel' },
-    { name: 'Vinnys Lins' },
-  ];
+  public learners: any[] = [];
 
   constructor(
     public navCtrl: NavController,
@@ -31,6 +25,17 @@ export class HomePage {
     private modalCtrl: ModalController,
     public userProvider: UserProvider
   ) {
+    const id = localStorage.getItem('id');
+    this.userProvider.getUser(id).then(() => {
+      if (this.userProvider.user.permission.idPermission === 3) {
+        // Get data for learner
+      } else {
+        // Get data for instructor
+        this.userProvider.getUsers().then(response => {
+          this.learners = response.filter(learner => learner.permission.idPermission === 3);
+        });
+      }
+    });
   }
 
   ionViewDidEnter(): void {

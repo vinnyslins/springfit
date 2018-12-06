@@ -7,8 +7,6 @@ export class UserProvider {
   public user: any;
 
   constructor(public http: HttpClient) {
-    const id = localStorage.getItem('id');
-    if (id) this.getUser(id);
   }
 
   login(payload: any): Promise<any> {
@@ -16,13 +14,16 @@ export class UserProvider {
     return this.http.post(url, payload).toPromise();
   }
 
-  getUser(id: string): void {
-    this.http.get(`${this.apiUrl}/user/${id}`).toPromise().then((response: any) => {
-      this.user = response;
-    });
+  async getUser(id: string): Promise<any> {
+    const response = await this.http.get(`${this.apiUrl}/user/${id}`).toPromise();
+    this.user = response;
   }
 
   saveUser(): Promise<any> {
     return this.http.put(`${this.apiUrl}/user`, this.user).toPromise();
+  }
+
+  getUsers(): Promise<any> {
+    return this.http.get(`${this.apiUrl}/users`).toPromise();
   }
 }
