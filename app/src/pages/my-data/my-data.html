@@ -16,23 +16,23 @@
   <ion-list>
     <ion-item>
       <ion-label floating>Nome</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="userProvider.user.name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>CPF</ion-label>
-      <ion-input type="text" disabled></ion-input>
+      <ion-input type="text" [(ngModel)]="userProvider.user.document" disabled></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>E-mail</ion-label>
-      <ion-input type="email"></ion-input>
+      <ion-input type="email" [(ngModel)]="userProvider.user.email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Data de nascimento</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="userProvider.user.birthday"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label floating>Endereço</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="userProvider.user.address"></ion-input>
     </ion-item>
     <ion-item hidden>
       <ion-label>Período</ion-label>

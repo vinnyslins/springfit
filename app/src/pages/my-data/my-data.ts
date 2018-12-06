@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import Swal from 'sweetalert2';
+import { UserProvider } from '../../providers/user';
 
 @Component({
   selector: 'page-my-data',
@@ -9,7 +10,12 @@ import Swal from 'sweetalert2';
 export class MyDataPage {
   public periods: string[] = ['Manhã', 'Tarde', 'Noite'];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private platform: Platform,
+    public userProvider: UserProvider
+  ) {
   }
 
   ionViewDidEnter(): void {

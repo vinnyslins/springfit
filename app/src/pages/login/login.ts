@@ -23,10 +23,20 @@ export class LoginPage {
 
     this.userProvider.login(payload).then(response => {
       if (response) {
-        delete response.password;
-        this.userProvider.user = response;
-        localStorage.setItem('id', response.userId);
-        this.navCtrl.setRoot(TabsPage);
+        if (response.permission.idPermission === 3 || response.permission.idPermission === 4) {
+          delete response.password;
+          this.userProvider.user = response;
+          localStorage.setItem('id', response.userId);
+          this.navCtrl.setRoot(TabsPage);
+        } else {
+          swal({
+            title: 'Erro',
+            text: 'Aplicativo disponível apenas para alunos e instrutores.',
+            type: 'error',
+            showCloseButton: true,
+            showConfirmButton: false
+          });
+        }
       } else {
         swal({
           title: 'Erro',

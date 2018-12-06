@@ -17,7 +17,7 @@ export class UserProvider {
   }
 
   getUser(id: string): void {
-    this.http.get(`${this.apiUrl}/user/${id}`).toPromise().then(response => {
+    this.http.get(`${this.apiUrl}/user/${id}`).toPromise().then((response: any) => {
       delete response.password;
       this.user = response;
     });

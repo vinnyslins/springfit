@@ -4,45 +4,47 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="learner" *ngIf="userProvider.user?.permission.idPermission == 3">
-  <div class="progress" padding text-center>
-    <h4>Seu progresso semanal</h4>
-    <circle-progress [percent]="percent" subtitle="concluído"></circle-progress>
+<ion-content>
+  <div class="learner" *ngIf="userProvider.user?.permission.idPermission == 3">
+    <div class="progress" padding text-center>
+      <h4>Seu progresso semanal</h4>
+      <circle-progress [percent]="percent" subtitle="concluído"></circle-progress>
+    </div>
+
+    <div padding class="training">
+      <h4 text-center>Seu treino de hoje</h4>
+      <ion-list>
+        <ion-item-sliding *ngFor="let exercise of exercises" #slide>
+          <ion-item [ngClass]="{ 'done': exercise.done }">
+            <h2>
+              <ion-row>
+                <ion-col col-9>
+                  <ion-icon name="checkmark" *ngIf="exercise.done"></ion-icon>
+                  {{ exercise.name }}
+                </ion-col>
+                <ion-col col-3>
+                  {{ exercise.repeats }} de {{ exercise.series }}
+                </ion-col>
+              </ion-row>
+            </h2>
+          </ion-item>
+          <ion-item-options side="right" *ngIf="!exercise.done">
+            <button ion-button color="light" (click)="toExercise(exercise); slide.close()">
+              <ion-icon name="checkmark-circle"></ion-icon>
+              Feito
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
   </div>
 
-  <div padding class="training">
-    <h4 text-center>Seu treino de hoje</h4>
+  <div class="instructor" *ngIf="userProvider.user?.permission.idPermission == 4">
     <ion-list>
-      <ion-item-sliding *ngFor="let exercise of exercises" #slide>
-        <ion-item [ngClass]="{ 'done': exercise.done }">
-          <h2>
-            <ion-row>
-              <ion-col col-9>
-                <ion-icon name="checkmark" *ngIf="exercise.done"></ion-icon>
-                {{ exercise.name }}
-              </ion-col>
-              <ion-col col-3>
-                {{ exercise.repeats }} de {{ exercise.series }}
-              </ion-col>
-            </ion-row>
-          </h2>
-        </ion-item>
-        <ion-item-options side="right" *ngIf="!exercise.done">
-          <button ion-button color="light" (click)="toExercise(exercise); slide.close()">
-            <ion-icon name="checkmark-circle"></ion-icon>
-            Feito
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
+      <ion-list-header>Alunos</ion-list-header>
+      <a ion-item *ngFor="let learner of learners" (click)="openModal(learner)">
+        {{ learner.name }}
+      </a>
     </ion-list>
   </div>
-</ion-content>
-
-<ion-content class="instructor" *ngIf="userProvider.user?.permission.idPermission == 4">
-  <ion-list>
-    <ion-list-header>Alunos</ion-list-header>
-    <a ion-item *ngFor="let learner of learners" (click)="openModal(learner)">
-      {{ learner.name }}
-    </a>
-  </ion-list>
 </ion-content>
