@@ -27,6 +27,10 @@ import { UserComponent } from './content/users/user/user.component'
 import { registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { ModalLoginComponent } from './header/banner/modal-login/modal-login.component';
+import { ExercisesComponent } from './content/exercises/exercises.component';
+import { ExerciseComponent } from './content/exercises/exercise/exercise.component';
+import { EditExerciseComponent } from './content/exercises/edit-exercise/edit-exercise.component';
 
 registerLocaleData(localeBr, 'pt');
 
@@ -35,7 +39,8 @@ const appRoutes: Routes = [
   
   { path: 'users', component: UsersComponent},
   { path: 'home', component: HomeComponent },
-  { path: 'downloads', component: DownloadsComponent}
+  { path: 'downloads', component: DownloadsComponent},
+  { path: 'exercises', component: ExercisesComponent}
  ];
 
 @NgModule({
@@ -53,7 +58,11 @@ const appRoutes: Routes = [
     UsersComponent,
     HomeComponent,
     EditUserComponent,
-    UserComponent
+    UserComponent,
+    ModalLoginComponent,
+    ExercisesComponent,
+    ExerciseComponent,
+    EditExerciseComponent
   ],
   imports: [
     SweetAlert2Module.forRoot(),

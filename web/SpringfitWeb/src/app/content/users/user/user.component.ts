@@ -4,8 +4,9 @@ import { User } from 'src/app/services/users.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['../../comum-management/user.component.scss']
 })
+
 export class UserComponent implements OnInit {
 
   @Input('user') user : User;

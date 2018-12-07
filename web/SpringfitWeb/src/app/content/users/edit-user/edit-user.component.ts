@@ -6,12 +6,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.scss']
+  styleUrls: ['../../comum-management/edit-user.component.scss']
 })
+
 export class EditUserComponent implements OnInit {
 
   @Input('user') user : User;
+
   @Output() usersChanged = new EventEmitter();
+  @Output() unselectUser = new EventEmitter();
 
   bufferUser: User;
 
@@ -31,12 +34,14 @@ export class EditUserComponent implements OnInit {
   updateUser(){
     this.usersService.updateUser(this.bufferUser);
 
+    this.user = this.bufferUser;
     this.feedback();
   }
 
   deletUser(){
     this.usersService.deletUser(this.bufferUser);
 
+    this.user = this.bufferUser;
     this.bufferUser = undefined;
     this.feedback();
   }
@@ -74,6 +79,15 @@ export class EditUserComponent implements OnInit {
       return false;
     else
       return true;
+  }
+
+  goToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  unselectUsers(){
+    this.unselectUser.emit(undefined);
   }
 
   feedback() {

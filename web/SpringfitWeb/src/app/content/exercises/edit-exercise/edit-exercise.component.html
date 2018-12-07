@@ -1,0 +1,40 @@
+<div class="edit-user-container border border-secondary">
+  <div *ngIf="exercise">
+
+    <div class="input-group mb-3">
+      <button (click)="unselectExercises()" class="btn btn-secundary back-button">
+        <i class="fas fa-chevron-left"></i>
+        Voltar
+      </button>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="name-input">Nome</span>
+      </div>
+      <input name="name-input" [(ngModel)]="bufferExercise.name" type="text" class="form-control" placeholder="Nome"
+        required>
+    </div>
+
+
+    <div class="actions">
+
+      <!-- <button *ngIf="exercise.idExercise != undefined" [swal]="['Sucesso!', 'Exercício atualizados!', 'success']" [disabled]="exerciseChanged()"
+        (click)="updateExercise()" class="btn btn-primary">Atualizar</button> -->
+
+      <button *ngIf="exercise.idExercise == undefined" [swal]="['Sucesso!', 'Exercício registrado!', 'success']" [disabled]="ableToRegister()"
+        (click)="registerExercise()" class="btn btn-success">Cadastrar</button>
+
+      <button *ngIf="exercise.idExercise != undefined" [swal]="deleteSwal" (confirm)="deletExercise()" class="btn btn-danger">Deletar</button>
+
+      <swal #deleteSwal title="Delete {{ exercise.name }}?" text="Deseja mesmo deletar esse exercício?" type="question"
+        [showCancelButton]="true" [focusCancel]="true" (confirm)="deletExercise()"></swal>
+
+    </div>
+  </div>
+
+  <div *ngIf="exercise == undefined" class="centralize-content no-user-selected">
+    <h1>Nenhum usuário selecionado</h1>
+    <i class="fas fa-users"></i>
+  </div>
+</div>

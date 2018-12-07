@@ -4,6 +4,12 @@
       Venha para {{ title }}!
     </h1>
     <h2>{{slogan}}</h2>
-    <button *ngIf="userService.CurrentUser == null" type="button" class="login-button btn btn-secondary btn-lg btn-block">Entrar<i class="fas fa-chevron-circle-right"></i></button>
+
+    <button *ngIf="userService.CurrentUser == null" class="navbar-toggler login-button btn-block bg-secondary" type="button" data-toggle="modal" data-target="#exampleModal">
+      Entrar<i class="fas fa-chevron-circle-right"></i>
+    </button>
+
+    <app-modal-login></app-modal-login>
+    
   </div>
 </div>

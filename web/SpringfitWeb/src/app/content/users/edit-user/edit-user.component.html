@@ -2,6 +2,13 @@
   <div *ngIf="user">
 
     <div class="input-group mb-3">
+      <button (click)="unselectUsers()" class="btn btn-secundary back-button">
+        <i class="fas fa-chevron-left"></i>
+        Voltar
+      </button>
+    </div>
+
+    <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="name-input">Nome</span>
       </div>
@@ -54,12 +61,12 @@
 
     <div class="actions">
       
-      <button *ngIf="user.userId != undefined" [swal]="['Sucesso!', 'Usuário atualizados!', 'success']" [disabled]="userChanged()" (click)="updateUser()" class="btn btn-primary button-update">Atualizar</button>
+      <button *ngIf="user.userId != undefined" [swal]="['Sucesso!', 'Usuário atualizados!', 'success']" [disabled]="userChanged()" (click)="updateUser()" class="btn btn-primary">Atualizar</button>
 
-      <button *ngIf="user.userId == undefined" [swal]="['Sucesso!', 'Usuário registrado!', 'success']" [disabled]="ableToRegister()" (click)="registerUser()" class="btn btn-primary button-register">Cadastrar</button>
+      <button *ngIf="user.userId == undefined" [swal]="['Sucesso!', 'Usuário registrado!', 'success']" [disabled]="ableToRegister()" (click)="registerUser()" class="btn btn-success">Cadastrar</button>
       
       <button *ngIf="user.userId != undefined" 
-      [swal]="deleteSwal" (confirm)="deletUser()" class="btn btn-primary button-update">Deletar</button>
+      [swal]="deleteSwal" (confirm)="deletUser()" class="btn btn-danger">Deletar</button>
 
       <swal #deleteSwal title="Delete {{ user.name }}?" text="Deseja mesmo deletar esse usuário?" type="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="deletUser()"></swal>
 
@@ -68,6 +75,6 @@
 
   <div *ngIf="user == undefined" class="centralize-content no-user-selected">
     <h1>Nenhum usuário selecionado</h1>
-    <i class="fas fa-user-shield"></i>
+    <i class="fas fa-users"></i>
   </div>
 </div>

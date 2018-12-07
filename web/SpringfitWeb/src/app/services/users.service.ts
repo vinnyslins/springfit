@@ -10,9 +10,7 @@ import { Observable } from 'rxjs';
 export class UsersService {
 
   usersHttpURL: string = 'https://springfit.herokuapp.com/api/users/';
-
   userHttpURL: string = 'https://springfit.herokuapp.com/api/user/';
-
   loginHttpURL: string = 'https://springfit.herokuapp.com/api/login/';
 
   CurrentUser : User;
@@ -70,7 +68,7 @@ export class UsersService {
 
     (this.http.post(`${this.loginHttpURL}`, userlogin)).toPromise().then(
       result => {
-        if(result === null)
+        if(result == null)
           return valid = false;
         else{
           this.CurrentUser = result as User;

@@ -1,0 +1,9 @@
+<a (click)="OnSelect()" [ngClass]="{ 'selected': this.selectedExercise == this.exercise }"
+  class="user">
+  <div class="centralize-content user-img">
+    <i class="fas fa-dumbbell"></i>
+  </div>
+  <div class="user-details centralize-content">
+    <h1 class="user-name">{{ exercise.name }}</h1>
+  </div>
+</a>

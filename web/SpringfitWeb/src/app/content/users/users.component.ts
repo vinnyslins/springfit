@@ -7,7 +7,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['../comum-management/users.component.scss']
 })
 
 export class UsersComponent implements OnInit {
@@ -33,7 +33,7 @@ export class UsersComponent implements OnInit {
   
   listUsersChanged(user : User): void{
     if(user == undefined)
-    this.SelectedUser = undefined;
+      this.SelectedUser = undefined;
     
     this.getUsers();
   }

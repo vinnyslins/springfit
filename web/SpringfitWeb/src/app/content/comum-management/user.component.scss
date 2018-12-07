@@ -1,8 +1,4 @@
-@import '../../../../variables';
-
-.off{
-    display: none !important;
-}
+@import '../../../variables';
 
 .user{
     height: 100%;
@@ -51,17 +47,6 @@ i{
     background-color: $primary-color;
 }
 
-.instructor{
-    // background-color: #4e91fc;
-    background-color: #aaaaaa;
-}
-
-.learner{
-    // background-color: #39f956;
-    background-color: #aaaaaa;
-}
-
-.administrator{
-    // background-color: #fc533a;
-    background-color: #aaaaaa;
+.off{
+    display: none !important;
 }

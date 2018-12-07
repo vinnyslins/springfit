@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-3">
+  <div [ngClass]="{'user-selected': SelectedUser != undefined}" class="left-col">
     <ul class="users-cards border border-secondary">
       <button (click)="createNewUser()" type="button" class="btn btn-primary btn-lg btn-block button-new-user">Novo Usuário</button>
     
@@ -10,7 +10,7 @@
     
     </ul>
   </div>
-  <div class="col-sm">
-    <app-edit-user [user]="SelectedUser" class="edit-user" (usersChanged)="listUsersChanged($user)"></app-edit-user>
+  <div [ngClass]="{'user-selected': SelectedUser == undefined}" class="col">
+    <app-edit-user [user]="SelectedUser" class="edit-user" (unselectUser)="reciverFeedback($user)" (usersChanged)="listUsersChanged($user)"></app-edit-user>
   </div>
 </div>

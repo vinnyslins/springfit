@@ -8,13 +8,16 @@
       <a [ngClass]="{'active' : router.url == '/users'}" class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" routerLink="/users"
         aria-selected="false">Usuários</a>
     </li>
+    <li *ngIf="userService.currentUserAdmin()" class="nav-item">
+      <a [ngClass]="{'active' : router.url == '/exercises'}" class="nav-link" id="pills-exercise-tab" data-toggle="pill" href="#pills-exercise"
+        role="tab" aria-controls="pills-exercise" routerLink="/exercises" aria-selected="false">Exercícios</a>
+    </li>
     <li class="nav-item">
       <a [ngClass]="{'active' : router.url == '/downloads'}" class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" routerLink="/downloads"
         aria-selected="false">Downloads</a>
     </li>
     <div *ngIf="userService.CurrentUser == null" class="btn-group">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Entrar
       </a>
       <div class="app-sign-in"></div>
@@ -23,30 +26,34 @@
       <a (click)="logout()" class="nav-link" id="pills-contact-tab" data-toggle="pill"
         href="#pills-contact" role="tab" aria-controls="pills-contact" routerLink="/home" aria-selected="false"><i class="fas fa-sign-out-alt" data-toggle="tooltip" title="Logout"></i></a>
     </li>
-    <!-- <button (click)="teste()" class="btn-sign-in btn btn-primary">Teste</button> -->
   </ul>
 </nav>
 
 <div class="pos-f-t hamburg-menu">
-  <div class="collapse" id="navbarToggleExternalContent">
+  <div class="collapse" id="navbarTopHamburgMenu">
     <div class=" p-4">
       <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" routerLink="home" aria-selected="true">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" routerLink="/users"
+          <a *ngIf="userService.currentUserAdmin()" class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" routerLink="/users"
             aria-selected="false">Usuários</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" routerLink="downloads" aria-selected="false">Downloads</a>
         </li>
+        <li *ngIf="userService.CurrentUser != null" class="nav-item">
+          <a (click)="logout()" class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+            aria-controls="pills-contact" routerLink="/home" aria-selected="false"><i class="fas fa-sign-out-alt" data-toggle="tooltip"
+              title="Logout"></i></a>
+        </li>
       </ul>
     </div>
   </div>
   <nav class="navbar navbar-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
-      aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTopHamburgMenu"
+      aria-controls="navbarTopHamburgMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <img class="brand-img" src="assets/img/BrandSpringfit.png" alt="">

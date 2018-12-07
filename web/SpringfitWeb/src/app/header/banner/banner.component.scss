@@ -5,10 +5,8 @@
     background-origin: content-box;
     background-position: top center;
     color: white;
-    height: 20em;
     
     @media screen and (min-width:960px){
-        height: 15em;
         background-position: top left;
     }
 }
@@ -28,16 +26,16 @@
 }
 
 .login-button{
-    padding: 5%;
-    text-align: left;
-    font-size: 200%;
+    padding: 0.2em;
+    font-size: 2em;
+    display: flex;
+    color: white;
 
     @media screen and (min-width:960px){
         display: none;
     }
 
     i{
-        margin-top: 2%;
-        float: right;
+        margin: auto 0 auto auto;
     }
 }
