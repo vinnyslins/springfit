@@ -26,7 +26,7 @@ export class ModalPage {
 
     this.trainProvider.getPratices().then(practices => {
       this.trainProvider.getTrains().then(response => {
-        const trains = response.filter(train => train.user.userId === this.learner.userId);
+        const trains = response.filter(train => train.user && train.user.userId === this.learner.userId);
         this.trains.forEach(day => {
           const train = trains.find(element => element.date == day.date);
           if (train) {

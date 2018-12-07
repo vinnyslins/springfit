@@ -16,6 +16,13 @@ page-modal {
         font-size: 18px;
         color: map-get($colors, 'dark');
       }
+
+      .done {
+        h2 {
+          font-weight: bold;
+          color: map-get($colors, 'tertiary');
+        }
+      }
     }
   }
 
