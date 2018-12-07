@@ -161,7 +161,7 @@ export class ModalPage {
     exercisePrompt.present();
   }
 
-  deletePractice(practice: any): void {
+  deletePractice(train: any, practice: any): void {
     this.alertCtrl.create({
       message: 'Tem certeza que deseja excluir essa prática?',
       buttons: [
@@ -169,7 +169,7 @@ export class ModalPage {
         {
           text: 'Confirmar',
           handler: () => {
-            this.trainProvider.deletePractices(practice).then(() => {
+            this.trainProvider.deletePractices(practice.idPractice).then(() => {
               swal({
                 title: 'Sucesso',
                 text: 'Prática excluída com sucesso.',
@@ -177,6 +177,8 @@ export class ModalPage {
                 showCloseButton: true,
                 showConfirmButton: false
               });
+              const index = train.practices.indexOf(practice);
+              train.practices.splice(index, 1);
             }).catch(() => {
               swal({
                 title: 'Erro',

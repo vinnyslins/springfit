@@ -28,8 +28,8 @@ export class TrainProvider {
     return this.http.put(`${this.apiUrl}/practice`, payload).toPromise();
   }
 
-  deletePractices(payload: any): Promise<any> {
-    return this.http.delete(`${this.apiUrl}/practice`, payload).toPromise();
+  deletePractices(id: number): Promise<any> {
+    return this.http.delete(`${this.apiUrl}/practice/${id}`).toPromise();
   }
 
   getExercises(): Promise<any> {

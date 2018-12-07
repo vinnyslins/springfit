@@ -12,11 +12,6 @@ page-modal {
       border-radius: 30px;
       margin-bottom: 10px;
 
-      a {
-        font-size: 18px;
-        color: map-get($colors, 'dark');
-      }
-
       .done {
         h2 {
           font-weight: bold;
