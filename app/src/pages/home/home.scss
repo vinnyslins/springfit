@@ -1,6 +1,13 @@
 page-home {
-  .learner {
+  .gradient-background {
     background: linear-gradient(lighten(map-get($colors, 'primary'), 15), map-get($colors, 'tertiary'));
+  }
+
+  .white-background {
+    background-color: map-get($colors, 'white-color');
+  }
+
+  .learner {
     color: map-get($colors, 'white-color');
   }
 
