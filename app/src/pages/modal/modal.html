@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ learner.name }}
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary">Voltar</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager>
+    <ion-slide *ngFor="let train of trains">
+      <h2>{{ train.date | date: 'EEEE' | uppercase }}</h2>
+      <div *ngIf="!train.idTrain">
+        <p>Nenhum treino criado para esse dia.</p>
+        <button ion-button outline round (click)="createTrain(train.date)">Criar treino</button>
+      </div>
+      <div *ngIf="train.idTrain">
+        <div *ngIf="!train.practices.length">
+          <p>Nenhuma prática criada para esse treino.</p>
+        </div>
+        <button ion-button outline round (click)="createPractice(train)">Criar prática</button>
+        <div *ngIf="train.practices.length">
+          <ion-list padding>
+            <ion-item-sliding *ngFor="let practice of train.practices">
+              <ion-item [ngClass]="{ 'done': practice.done }">
+                <h2>
+                  <ion-row>
+                    <ion-col col-9>
+                      <ion-icon name="trash" (click)="deletePractice(train, practice)" *ngIf="!practice.done"></ion-icon>
+                      <ion-icon name="checkmark" *ngIf="practice.done"></ion-icon>
+                      {{ practice.exercise.name }}
+                    </ion-col>
+                    <ion-col col-3>
+                      {{ practice.repeats }} de {{ practice.series }}
+                    </ion-col>
+                  </ion-row>
+                </h2>
+              </ion-item>
+            </ion-item-sliding>
+          </ion-list>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

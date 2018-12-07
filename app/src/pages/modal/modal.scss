@@ -1,0 +1,27 @@
+page-modal {
+  ion-slide {
+    background: linear-gradient(map-get($colors, 'primary'), darken(map-get($colors, 'tertiary'), 3));
+    color: map-get($colors, 'white-color');
+
+    button.button {
+      color: map-get($colors, 'white-color');
+      border-color: map-get($colors, 'white-color');
+    }
+
+    ion-item-sliding {
+      border-radius: 30px;
+      margin-bottom: 10px;
+
+      .done {
+        h2 {
+          font-weight: bold;
+          color: map-get($colors, 'tertiary');
+        }
+      }
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: map-get($colors, 'white-color');
+  }
+}

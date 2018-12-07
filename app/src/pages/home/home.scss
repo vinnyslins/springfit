@@ -1,3 +1,42 @@
 page-home {
+  .gradient-background {
+    background: linear-gradient(lighten(map-get($colors, 'primary'), 15), map-get($colors, 'tertiary'));
+  }
 
+  .white-background {
+    background-color: map-get($colors, 'white-color');
+  }
+
+  .learner {
+    color: map-get($colors, 'white-color');
+  }
+
+  .progress {
+    background-color: map-get($colors, 'white-color');
+    color: map-get($colors, 'dark');
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+  }
+
+  .training {
+    ion-item-sliding {
+      border-radius: 30px;
+      margin-bottom: 10px;
+
+      .label-md {
+        margin: 0;
+      }
+
+      .done {
+        h2 {
+          font-weight: bold;
+          color: map-get($colors, 'tertiary');
+        }
+      }
+
+      h2 {
+        color: map-get($colors, 'dark');
+      }
+    }
+  }
 }

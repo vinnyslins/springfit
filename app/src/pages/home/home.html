@@ -4,14 +4,53 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content [ngClass]="{
+  'gradient-background': userProvider.user?.permission.idPermission == 3,
+  'white-background': userProvider.user?.permission.idPermission == 4
+}">
+  <div class="learner" *ngIf="userProvider.user?.permission.idPermission == 3">
+    <div class="progress" padding text-center>
+      <h4>Seu progresso diário</h4>
+      <circle-progress [percent]="percent" subtitle="concluído"></circle-progress>
+    </div>
+
+    <div padding class="training">
+      <h4 text-center *ngIf="practices.length">Seu treino de hoje</h4>
+      <ion-list *ngIf="practices.length">
+        <ion-item-sliding *ngFor="let practice of practices" #slide>
+          <ion-item [ngClass]="{ 'done': practice.done }">
+            <h2>
+              <ion-row>
+                <ion-col col-9>
+                  <ion-icon name="checkmark" *ngIf="practice.done"></ion-icon>
+                  {{ practice.exercise.name }}
+                </ion-col>
+                <ion-col col-3>
+                  {{ practice.repeats }} de {{ practice.series }}
+                </ion-col>
+              </ion-row>
+            </h2>
+          </ion-item>
+          <ion-item-options side="right" *ngIf="!practice.done">
+            <button ion-button color="light" (click)="toPractice(practice); slide.close()">
+              <ion-icon name="checkmark-circle"></ion-icon>
+              Feito
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+      <h4 padding-top text-center *ngIf="!practices.length">
+        Não existe nenhuma prática cadastrada para seu treino de hoje.
+      </h4>
+    </div>
+  </div>
+
+  <div class="instructor" *ngIf="userProvider.user?.permission.idPermission == 4">
+    <ion-list>
+      <ion-list-header>Alunos</ion-list-header>
+      <a ion-item *ngFor="let learner of learners" (click)="openModal(learner)">
+        {{ learner.name }}
+      </a>
+    </ion-list>
+  </div>
 </ion-content>
