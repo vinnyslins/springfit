@@ -35,10 +35,10 @@ public class ExerciseResource {
         return exerciseRepository.save(exercise);
     }
 
-    @DeleteMapping("/exercise")
+    @DeleteMapping("/exercise/{id}")
     @ApiOperation(value = "Delete a exercise.")
-    public void deleteExercise(@RequestBody Exercise exercise) {
-        exerciseRepository.delete(exercise);
+    public void deleteExercise(@PathVariable(value = "id") long id) {
+        exerciseRepository.delete(exerciseRepository.findById(id));
     }
 
     @PutMapping("/exercise")
