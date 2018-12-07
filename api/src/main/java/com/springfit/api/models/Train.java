@@ -13,29 +13,10 @@ public class Train {
     private long idTrain;
 
     @ManyToOne
-    private Instructor instructor;
-
-    @ManyToOne
-    private Learner learner;
+    private User user;
 
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date date;
-
-    public Instructor getInstructor() {
-        return instructor;
-    }
-
-    public void setInstructor(Instructor instructor) {
-        this.instructor = instructor;
-    }
-
-    public Learner getLearner() {
-        return learner;
-    }
-
-    public void setLearner(Learner learner) {
-        this.learner = learner;
-    }
 
     public Date getDate() {
         return date;
@@ -51,5 +32,13 @@ public class Train {
 
     public void setIdTrain(long idTrain) {
         this.idTrain = idTrain;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
