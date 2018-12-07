@@ -24,11 +24,16 @@ export class ModalPage {
     this.learner = navParams.get('learner');
     this.trains = this.getWeek();
 
-    this.trainProvider.getTrains().then(response => {
-      const trains = response.filter(train => train.user.userId === this.learner.userId);
-      this.trains.forEach(day => {
-        const train = trains.find(element => element.date == day.date);
-        if (train) day.idTrain = train.idTrain;
+    this.trainProvider.getPratices().then(practices => {
+      this.trainProvider.getTrains().then(response => {
+        const trains = response.filter(train => train.user.userId === this.learner.userId);
+        this.trains.forEach(day => {
+          const train = trains.find(element => element.date == day.date);
+          if (train) {
+            day.idTrain = train.idTrain;
+            day.practices = practices.filter(practice => practice.train.idTrain == train.idTrain);
+          }
+        });
       });
     });
 
@@ -132,7 +137,7 @@ export class ModalPage {
           text: 'Salvar',
           handler: data => {
             if (!data) return false;
-            payload.exercise = { idExercise: data };
+            payload.exercise = data;
             seriesPrompt.present();
           }
         }
@@ -140,9 +145,40 @@ export class ModalPage {
     });
 
     this.exercises.forEach(exercise => {
-      exercisePrompt.addInput({ type: 'radio', label: exercise.name, value: exercise.idExercise });
+      exercisePrompt.addInput({ type: 'radio', label: exercise.name, value: exercise });
     });
 
     exercisePrompt.present();
+  }
+
+  deletePractice(practice: any): void {
+    this.alertCtrl.create({
+      message: 'Tem certeza que deseja excluir essa prática?',
+      buttons: [
+        { text: 'Cancelar' },
+        {
+          text: 'Confirmar',
+          handler: () => {
+            this.trainProvider.deletePractices(practice).then(() => {
+              swal({
+                title: 'Sucesso',
+                text: 'Prática excluída com sucesso.',
+                type: 'success',
+                showCloseButton: true,
+                showConfirmButton: false
+              });
+            }).catch(() => {
+              swal({
+                title: 'Erro',
+                text: 'Ocorreu um erro ao excluir prática.',
+                type: 'error',
+                showCloseButton: true,
+                showConfirmButton: false
+              });
+            });
+          }
+        }
+      ]
+    }).present();
   }
 }

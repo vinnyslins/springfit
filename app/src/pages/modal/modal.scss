@@ -7,6 +7,16 @@ page-modal {
       color: map-get($colors, 'white-color');
       border-color: map-get($colors, 'white-color');
     }
+
+    ion-item-sliding {
+      border-radius: 30px;
+      margin-bottom: 10px;
+
+      a {
+        font-size: 18px;
+        color: map-get($colors, 'dark');
+      }
+    }
   }
 
   .swiper-pagination-bullet-active {

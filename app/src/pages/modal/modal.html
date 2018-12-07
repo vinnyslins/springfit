@@ -24,7 +24,30 @@
           <p>Nenhuma prática criada para esse treino.</p>
         </div>
         <button ion-button outline round (click)="createPractice(train)">Criar prática</button>
-        <div *ngIf="train.practices.length"></div>
+        <div *ngIf="train.practices.length">
+          <ion-list padding>
+            <ion-item-sliding *ngFor="let practice of train.practices">
+              <ion-item>
+                <h2>
+                  <ion-row>
+                    <ion-col col-8>
+                      <ion-icon name="checkmark" *ngIf="practice.done"></ion-icon>
+                      {{ practice.exercise.name }}
+                    </ion-col>
+                    <ion-col col-3>
+                      {{ practice.repeats }} de {{ practice.series }}
+                    </ion-col>
+                    <ion-col col-1>
+                      <a (click)="deletePractice(practice)">
+                        <ion-icon name="trash"></ion-icon>
+                      </a>
+                    </ion-col>
+                  </ion-row>
+                </h2>
+              </ion-item>
+            </ion-item-sliding>
+          </ion-list>
+        </div>
       </div>
     </ion-slide>
   </ion-slides>

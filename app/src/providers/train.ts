@@ -20,6 +20,14 @@ export class TrainProvider {
     return this.http.post(`${this.apiUrl}/practice`, payload).toPromise();
   }
 
+  getPratices(): Promise<any> {
+    return this.http.get(`${this.apiUrl}/practices`).toPromise();
+  }
+
+  deletePractices(payload: any): Promise<any> {
+    return this.http.delete(`${this.apiUrl}/practice`, payload).toPromise();
+  }
+
   getExercises(): Promise<any> {
     return this.http.get(`${this.apiUrl}/exercises`).toPromise();
   }
