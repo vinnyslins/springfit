@@ -1,0 +1,52 @@
+@import '../../../variables';
+
+.user{
+    height: 100%;
+    padding: 2%;
+    display: flex;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #cacaca;
+    
+    .user-details{
+        width: 85%;
+
+        h1{
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .detail{
+            text-align: left;
+            display: flex;
+
+            i{
+                font-size: 0.9em;
+                margin: auto 0 auto 0;
+            }
+
+            p{
+                margin: auto;
+                margin-left: 1em;
+            }
+        }
+    }
+    
+    .user-img{
+        width: 15%;
+        margin: auto 5% auto 5%;
+    }
+}
+
+i{
+    float: left;
+    font-size: 3em;
+}
+
+.selected{
+    background-color: $primary-color;
+}
+
+.off{
+    display: none !important;
+}

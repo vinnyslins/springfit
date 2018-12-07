@@ -1,0 +1,54 @@
+@import '../../../variables';
+
+// @media screen and (min-width:480px)
+// @media screen and (min-width:768px)
+// @media screen and (min-width:960px)
+// @media screen and (min-width:1280px)
+
+.list-plans{
+    padding: 0;
+    justify-content: space-between;
+
+    @media screen and (min-width:768px){
+        display: inline-flex;
+    }
+}
+
+.plan{
+    list-style: none;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 2%;
+
+    div{
+        height: 100%;
+        padding: 2%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        button{
+            font-size: 1.2em;
+            font-weight: 500;
+            margin: 2%;
+        }
+
+        h2{
+            font-weight: 500;
+            color: $primary-color;
+        }
+        
+        li{
+            list-style: none;
+        }
+
+        ul{
+            padding: 2%;
+            width: 100%;
+        }
+    }
+}
+
+i{
+    margin: 0 15% 0 15%;
+}

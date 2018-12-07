@@ -1,0 +1,41 @@
+@import '../../../variables';
+  
+.banner{
+    background: url(../../../assets/img/BannerSpringfit.jpg) no-repeat fixed;
+    background-origin: content-box;
+    background-position: top center;
+    color: white;
+    
+    @media screen and (min-width:960px){
+        background-position: top left;
+    }
+}
+    
+.banner-content{
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    text-align : center;
+
+    @media screen and (min-width:960px){
+        display: block;
+        text-align: left;
+    }
+}
+
+.login-button{
+    padding: 0.2em;
+    font-size: 2em;
+    display: flex;
+    color: white;
+
+    @media screen and (min-width:960px){
+        display: none;
+    }
+
+    i{
+        margin: auto 0 auto auto;
+    }
+}

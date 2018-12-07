@@ -1,0 +1,16 @@
+<div class="row">
+  <div [ngClass]="{'user-selected': SelectedUser != undefined}" class="left-col">
+    <ul class="users-cards border border-secondary">
+      <button (click)="createNewUser()" type="button" class="btn btn-primary btn-lg btn-block button-new-user">Novo Usuário</button>
+    
+      <li *ngFor="let user of Users" class="user">
+        <app-user [ngClass]="{'selected': user == SelectedUser}" [selectedUser]="this.SelectedUser" [user]="user"
+          (selectUser)="reciverFeedback($event)"></app-user>
+      </li>
+    
+    </ul>
+  </div>
+  <div [ngClass]="{'user-selected': SelectedUser == undefined}" class="col">
+    <app-edit-user [user]="SelectedUser" class="edit-user" (unselectUser)="reciverFeedback($user)" (usersChanged)="listUsersChanged($user)"></app-edit-user>
+  </div>
+</div>

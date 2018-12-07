@@ -1,0 +1,48 @@
+.no-user-selected{
+    height: 100%;
+}
+
+form{
+    width: inherit;
+}
+
+.edit-user-container{
+    padding: 1em;
+    border-radius: 5px;
+    height: 100%;
+}
+
+.actions{
+    display: flex;
+    
+    button{
+        margin-right: 1em;
+    }
+}
+
+.back-button{
+    display: flex;
+    @media screen and (min-width:768px){
+        display: none;
+    }
+
+    i{
+        margin: auto 0.5em auto 0;
+    }
+
+    p{
+        margin: auto 0 auto 0;
+    }
+}
+
+.no-user-selected{
+
+    i{
+        margin: auto;
+        font-size: 7em;
+    }
+
+    h1{
+        margin: auto;
+    }
+}

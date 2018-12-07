@@ -1,0 +1,15 @@
+<div class="row">
+  <div [ngClass]="{'user-selected': SelectedExercise != undefined}" class="left-col">
+    <ul class="users-cards border border-secondary">
+      <button (click)="createNewExercise()" type="button" class="btn btn-primary btn-lg btn-block button-new-user">Novo Exercício</button>
+
+      <li *ngFor="let exercise of Exercises" class="user">
+        <app-exercise [ngClass]="{'selected': exercise == SelectedExercise}" [selectedExercise]="this.SelectedExercise" [exercise]="exercise" (selectExercise)="reciverFeedback($event)"></app-exercise>
+      </li>
+
+    </ul>
+  </div>
+  <div [ngClass]="{'user-selected': SelectedExercise == undefined}" class="col">
+    <app-edit-exercise [exercise]="SelectedExercise" class="edit-user" (unselectExercise)="reciverFeedback($exercise)" (exercisesChanged)="listExercisesChanged($exercise)"></app-edit-exercise>
+  </div>
+</div>
