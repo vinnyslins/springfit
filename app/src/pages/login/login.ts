@@ -9,8 +9,8 @@ import swal from 'sweetalert2';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  public email: string;
-  public password: string;
+  public email = '';
+  public password = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider) {
   }

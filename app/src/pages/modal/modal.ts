@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, AlertController, Platform } from 'ionic-angular';
 import { TrainProvider } from '../../providers/train';
 import { UserProvider } from '../../providers/user';
 import swal from 'sweetalert2';
@@ -17,6 +17,7 @@ export class ModalPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
+    private platform: Platform,
     public trainProvider: TrainProvider,
     public userProvider: UserProvider,
     private alertCtrl: AlertController
@@ -42,6 +43,12 @@ export class ModalPage {
     });
   }
 
+  ionViewDidEnter(): void {
+    this.platform.registerBackButtonAction(() => {
+      this.dismiss();
+    });
+  }
+
   getWeek(): Date[] {
     const week = [];
     const current = new Date();
@@ -58,6 +65,9 @@ export class ModalPage {
 
   dismiss(): void {
     this.viewCtrl.dismiss();
+    this.platform.registerBackButtonAction(() => {
+      this.platform.exitApp();
+    });
   }
 
   createTrain(date: Date): void {
