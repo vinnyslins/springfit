@@ -63,7 +63,7 @@
       
       <button *ngIf="user.userId != undefined" [swal]="['Sucesso!', 'Usuário atualizados!', 'success']" [disabled]="userChanged()" (click)="updateUser()" class="btn btn-primary">Atualizar</button>
 
-      <button *ngIf="user.userId == undefined" [swal]="['Sucesso!', 'Usuário registrado!', 'success']" [disabled]="ableToRegister()" (click)="registerUser()" class="btn btn-success">Cadastrar</button>
+      <button *ngIf="user.userId == undefined" [disabled]="ableToRegister()" (click)="registerUser()" class="btn btn-success">Cadastrar</button>
       
       <button *ngIf="user.userId != undefined" 
       [swal]="deleteSwal" (confirm)="deletUser()" class="btn btn-danger">Deletar</button>

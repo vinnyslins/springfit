@@ -2,6 +2,7 @@ import { Component, OnInit, Input, SimpleChanges, SimpleChange, Output, EventEmi
 import { User, UsersService } from 'src/app/services/users.service';
 import { PermissionsService } from 'src/app/services/permissions.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-user',
@@ -47,8 +48,13 @@ export class EditUserComponent implements OnInit {
   }
   
   registerUser(): void{
+    this.bufferUser.password = Math.random().toString(36).substring(7);
     this.usersService.addUser(this.bufferUser).subscribe();
-    
+    swal({
+      title: 'Sucesso',
+      type: 'success',
+      html: `Usuário registrado! A senha de acesso é ${this.bufferUser.password}`
+    });
     this.feedback();
   }
 
