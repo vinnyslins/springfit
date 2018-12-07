@@ -17,7 +17,14 @@
       <h2>{{ train.date | date: 'EEEE' | uppercase }}</h2>
       <div *ngIf="!train.idTrain">
         <p>Nenhum treino criado para esse dia.</p>
-        <button ion-button outline round (click)="createTrain(train.date)">Criar agora</button>
+        <button ion-button outline round (click)="createTrain(train.date)">Criar treino</button>
+      </div>
+      <div *ngIf="train.idTrain">
+        <div *ngIf="!train.practices.length">
+          <p>Nenhuma prática criada para esse treino.</p>
+        </div>
+        <button ion-button outline round (click)="createPractice(train)">Criar prática</button>
+        <div *ngIf="train.practices.length"></div>
       </div>
     </ion-slide>
   </ion-slides>
