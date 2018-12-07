@@ -35,7 +35,7 @@ public class PracticeResource {
         return practiceRepository.save(practice);
     }
 
-    @DeleteMapping("/practice")
+    @DeleteMapping("/practice/{id}")
     @ApiOperation(value = "Delete a practice.")
     public void deletePractice(@PathVariable(value = "id") long id) {
         practiceRepository.delete(practiceRepository.findById(id));
